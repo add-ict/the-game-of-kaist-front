@@ -1,0 +1,35 @@
+@import "reset.scss";
+
+* {
+  overflow: hidden;
+  box-sizing: border-box;
+  user-select: none;
+  transition: 0.1s;
+}
+
+header {
+  position: fixed;
+}
+
+h1 {
+  font-size: 5vh;
+  font-weight: bold;
+}
+
+header {
+  z-index: 99;
+}
+
+#homeMain {
+  display: flex;
+}
+
+#dbRootSelect {
+  min-width: 10vh;
+}
+
+#headerText {
+  position: fixed;
+  z-index: 999;
+  right: 0;
+}

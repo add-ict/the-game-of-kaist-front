@@ -1,0 +1,18 @@
+.Wpath {
+  stroke: #fff;
+  fill: #fff;
+}
+
+.Bpath {
+  stroke: #363636;
+  fill: #363636;
+}
+
+#mapContainer {
+  position: fixed;
+  width: calc(100vw - 80vh);
+  max-height: 80vh;
+  right: 2vh;
+  top: 50%;
+  transform: translate(0, -50%);
+}

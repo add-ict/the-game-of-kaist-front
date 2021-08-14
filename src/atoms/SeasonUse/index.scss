@@ -1,0 +1,73 @@
+$transition-time: 1s;
+.modalOff {
+  top: -200%;
+  transition: $transition-time;
+}
+#askContainer {
+  position: fixed;
+  width: calc(100vw - 80vh);
+  height: 80vh;
+  right: 2vh;
+  top: 50%;
+  transform: translate(0, -50%);
+  text-align: center;
+  padding: 2vh;
+  box-sizing: border-box;
+  border:1vh solid #644a39;
+
+  background-color: white;
+  border-radius: 4vh;
+  &>div label {
+    text-align: left;
+    width: 15vh;
+    display: inline-block;
+    transform: translateY(2vh);
+  }
+  &>div:first-child {
+    width: 100%;
+    height: 95%;
+    padding: 2vh;
+    & * {
+      margin: 1vh;
+    }
+    & p {
+      padding: 2vh;
+      font-size: 3vh;
+    }
+  }
+  & select {
+    height: 4vh;
+  }
+  & > button {
+    margin: 0 calc(50% - 10vh);
+    background-color: #3Dc947;
+    width: 20vh;
+    height: 5vh;
+    border: 1px solid black;
+    border-radius: 1vh;
+    cursor: pointer;
+
+    &:active {
+      background-color: #24782a;
+    }
+
+  }
+  transition: $transition-time;
+}
+
+.submittedAskContainer {
+  top: -200% !important;
+}
+#mapAskContainer {
+  height:45vh;
+  background-color: #644a39;
+  padding: 1vh;
+  border-radius: 2vh;
+}
+
+p.Valid {
+  color: green;
+}
+p.Invalid {
+  color: red;
+}

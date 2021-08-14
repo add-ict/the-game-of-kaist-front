@@ -1,0 +1,13 @@
+#buttonIM {
+  position: relative;
+  transform: translateX(-101%);
+  background-color: red;
+  transition: 1s;
+  &:active{
+    background-color: green;
+    transition: 0.1s;
+  }
+}
+.show {
+  transform: translateX(0) !important;
+}
