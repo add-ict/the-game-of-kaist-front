@@ -6,67 +6,74 @@ import StudentRoute from "./pages/StudentRoute";
 import Dashboard from "./pages/Dashboard";
 import AdminRoute from "./pages/AdminRoute";
 import NotFound from "./pages/NotFound";
-import {getAdminDB, getDBs} from "./Firebase";
-import {useDispatch, useSelector} from "react-redux";
-import {setData as publicSetData} from "./modules/publicDB";
-import {setData as privateSetData} from "./modules/privateDB";
-
+const rootRef = getDB("/");
 const App = () => {
-    const [DBroot, setDBroot] = useState(0);
-    const nDBroots = 3;
-    const classID = useRef(0);
-    const DB = useRef(null);
-    const updater = name => x => DB.current.updater({[name]: x});
-    const dispatch = useDispatch();
-    const setClassID = (newID) => {
-        if (DB.current) {
-            if (newID == classID.current) return;
-            DB.current.publicDB.off()
-            DB.current.privateDB.off()
-        }
-        console.log(`class ${classID.current} => ${newID}`)
-        classID.current = parseInt(newID);
-        DB.current=getDBs(classID.current,DBroot,DBroot)
-        console.log(DB.current)
-        DB.current.publicDB.on('value', snapshot => {
-            console.log('public update',snapshot.val())
-            dispatch(publicSetData(snapshot.val()))
-        })
-        DB.current.privateDB.on('value', snapshot => {
-            console.log('private update',snapshot.val())
-            dispatch(privateSetData(snapshot.val()))
-        })
-    }
-    const adminDB = useRef(getAdminDB(DBroot));
+    const ckptRef = rootRef.child("CKPT");
+    const timerRef = rootRef.child("timer");
+    const stateRef = rootRef.child("state");
+    const turnGroupRef = rootRef.child("turnGroup");
+    const turnGroupsRef = rootRef.child("turnGroups");
+    const mapDataRef = rootRef.child("mapData");
+
+    const [CKPT,setCKPT] = useState(false);
+    const [turnGroup,setTurnGroup] = useState("init");
+    const [turnGroups,setTurnGroups] = useState({});
+    const [data,setData] = useState({});
+    const [prev,setPrev] = useState({});
+    const [timer,setTimer] = useState({});
+    const [state,setState] = useState({});
+    const [mapData,setMapData] = useState({});
+
     useEffect(()=>{
-        adminDB.current=getAdminDB(DBroot)
-    },[DBroot])
-    const {gameState} = useSelector(state => ({
-        gameState: state.publicDB?.gameState,
-    }));
+        ckptRef.on("value",snapshot=>{setCKPT(snapshot.val())})
+        return ()=>{ckptRef.off()}
+    },[]);
+    useEffect(()=>{
+        timerRef.on("value",snapshot=>{setTimer(snapshot.val())})
+        return ()=>{timerRef.off()}
+    },[]);
+    useEffect(()=>{
+        stateRef.on("value",snapshot=>{setState(snapshot.val())})
+        return ()=>{stateRef.off()}
+    },[]);
+    useEffect(()=>{
+        turnGroupsRef.on("value",snapshot=>{
+            setTurnGroups(snapshot.val())
+        })
+        return ()=>{turnGroupsRef.off()}
+    },[]);
+    useEffect(()=>{
+        turnGroupRef.on("value",snapshot=>{
+            setTurnGroup(snapshot.val())
+            setData(turnGroups[turnGroup])
+            setPrev(turnGroups[data.prev])
+        })
+        return ()=>{turnGroupRef.off()}
+    },[]);
+    useEffect(()=>{
+        mapDataRef.on("value",snapshot=>{setMapData(snapshot.val())})
+        return ()=>{mapDataRef.off()}
+    },[]);
+
     return (
         <>
             <header>
-                <span>
-                    Debug({DBroot}|{gameState}):
-                </span>
                 <Link to="/">
                     <button>Home</button>
                 </Link>
-                {!!DB.current?<Link to="/dashboard">
+                <Link to="/dashboard">
                     <button>Dashboard</button>
-                </Link>:null}
+                </Link>
             </header>
             <main>
                 <Switch>
                     <Route exact path="/"
-                           render={() => <Home nDBroots={nDBroots} DBroot={DBroot} setDBroot={setDBroot}/>}/>
+                           render={() => <Home rootRef={rootRef}/>}/>
                     <Route path="/app"
-                           render={res => <StudentRoute match={res.match} classID={classID} setClassID={setClassID}/>}/>
-                    <Route path="/dashboard" render={() => <Dashboard adminDB={adminDB.current}/>}/>
+                           render={res => <StudentRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef}/>}/>
+                    <Route path="/dashboard" render={() => <Dashboard rootRef={rootRef}/>}/>
                     <Route path="/admin"
-                           render={res => <AdminRoute match={res.match} classID={classID} setClassID={setClassID}
-                                                      updater={updater}/>}/>
+                           render={res => <AdminRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef}/>}/>
                     <Route component={NotFound}/>
                 </Switch>
             </main>
