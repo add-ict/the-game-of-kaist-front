@@ -1,11 +1,11 @@
 import React from "react";
 
-const Deck = () => {
-    if (!cards) return <div id="deckContainer"/>
+const Deck = ({data,classID}) => {
+    if (!data) return <div id="deckContainer"/>
     return (
         <div id="deckContainer">
-            {cards.map((x, i) => {
-                return <div key={i} className={deck[i] ? "cardoff" : ""}>{x}</div>
+            {data?.["class"]?.[classID]?.deck?.cards?.map((x, i) => {
+                return <div key={i} className={data?.["class"]?.[classID]?.deck?.used[i] ? "cardoff" : ""}>{x}</div>
             })}
         </div>
     );

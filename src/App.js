@@ -3,18 +3,20 @@ import {Link, Route, Switch} from "react-router-dom";
 
 import Home from './pages/Home'
 import StudentRoute from "./pages/StudentRoute";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import AdminRoute from "./pages/AdminRoute";
 import NotFound from "./pages/NotFound";
-const rootRef = getDB("/");
-const App = () => {
-    const ckptRef = rootRef.child("CKPT");
-    const timerRef = rootRef.child("timer");
-    const stateRef = rootRef.child("state");
-    const turnGroupRef = rootRef.child("turnGroup");
-    const turnGroupsRef = rootRef.child("turnGroups");
-    const mapDataRef = rootRef.child("mapData");
+import {getDB} from "./Firebase";
 
+const rootRef = getDB("/");
+const ckptRef = rootRef.child("CKPT");
+const timerRef = rootRef.child("timer");
+const stateRef = rootRef.child("state");
+const turnGroupRef = rootRef.child("turnGroup");
+const turnGroupsRef = rootRef.child("turnGroups");
+const mapDataRef = rootRef.child("mapData");
+
+const App = () => {
     const [CKPT,setCKPT] = useState(false);
     const [turnGroup,setTurnGroup] = useState("init");
     const [turnGroups,setTurnGroups] = useState({});
@@ -23,7 +25,7 @@ const App = () => {
     const [timer,setTimer] = useState({});
     const [state,setState] = useState({});
     const [mapData,setMapData] = useState({});
-
+    const [dataRef, setDataRef] = useState();
     useEffect(()=>{
         ckptRef.on("value",snapshot=>{setCKPT(snapshot.val())})
         return ()=>{ckptRef.off()}
@@ -45,8 +47,6 @@ const App = () => {
     useEffect(()=>{
         turnGroupRef.on("value",snapshot=>{
             setTurnGroup(snapshot.val())
-            setData(turnGroups[turnGroup])
-            setPrev(turnGroups[data.prev])
         })
         return ()=>{turnGroupRef.off()}
     },[]);
@@ -54,7 +54,11 @@ const App = () => {
         mapDataRef.on("value",snapshot=>{setMapData(snapshot.val())})
         return ()=>{mapDataRef.off()}
     },[]);
-
+    useEffect(()=>{
+        setData(turnGroups?.[turnGroup])
+        setPrev(turnGroups?.[data?.prev])
+        setDataRef(turnGroupsRef.child(turnGroup))
+    },[turnGroup,turnGroups])
     return (
         <>
             <header>
@@ -70,10 +74,10 @@ const App = () => {
                     <Route exact path="/"
                            render={() => <Home rootRef={rootRef}/>}/>
                     <Route path="/app"
-                           render={res => <StudentRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef}/>}/>
-                    <Route path="/dashboard" render={() => <Dashboard rootRef={rootRef}/>}/>
+                           render={res => <StudentRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef} dataRef={dataRef}/>}/>
+                    <Route path="/dashboard" render={() => <Dashboard rootRef={rootRef} CKPT={CKPT} ckptRef={ckptRef} dataRef={dataRef}/>}/>
                     <Route path="/admin"
-                           render={res => <AdminRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef}/>}/>
+                           render={res => <AdminRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef} dataRef={dataRef}/>}/>
                     <Route component={NotFound}/>
                 </Switch>
             </main>

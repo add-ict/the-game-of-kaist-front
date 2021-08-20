@@ -1,16 +1,9 @@
 import React from 'react';
-import {useSelector} from "react-redux";
-import {gameStateName} from "../gameStates"
-
-const Timer = () => {
-    const {timer, gameState} = useSelector(state => ({
-        timer: state.publicDB.time,
-        gameState: state.publicDB.gameState,
-    }));
+const Timer = ({state,timer}) => {
     return (
         <div id="timerContainer">
-            <div>{gameStateName(gameState)}</div>
-            <div>{(100 + Math.floor(timer / 60)).toString().substring(1, 3)}:{(100 + timer % 60).toString().substring(1, 3)}</div>
+            <div>{state.group}</div>
+            <div>{(100 + Math.floor(timer.time / 60)).toString().substring(1, 3)}:{(100 + timer.time % 60).toString().substring(1, 3)}</div>
         </div>
     );
 };

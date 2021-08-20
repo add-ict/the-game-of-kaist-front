@@ -1,5 +1,4 @@
 import React from "react";
-import {useSelector} from "react-redux";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
@@ -35,24 +34,24 @@ export const charList = {
         "Description": "머리 좋음"
     }
 }
-const ToolTip = ({updater}) => {
-    if (!updater) return null;
+const ToolTip = ({admin,onClick}) => {
+    if (!admin) return null;
     return (
         <div id="charSelect">
             {Array(6).fill(0).map((x, i) =>
                 <div key={i} style={{"backgroundImage": `url(${charList[i].Img})`}}
-                     onClick={
-                         ()=>updater("character")(i)
-                     }></div>)}
+                     onClick={()=>{onClick(i)}}></div>)}
         </div>
     );
 }
-const Char = ({updater}) => {
-    const {pChar} = useSelector(state => ({
-        pChar: state.privateDB?.character,
-    }));
+const Char = ({admin,data,classID,dataRef}) => {
+    const pChar = data?.["class"]?.[classID]?.character;
+    const onClick = (i)=>{
+        dataRef.child("class").child(classID).update({character:i})
+    }
+
     return (
-        <Tippy content={<ToolTip updater={updater}/>} interactive={true} placement="bottom" disabled={!updater}>
+        <Tippy content={<ToolTip admin={admin} onClick={onClick}/>} interactive={true} placement="bottom" disabled={!admin}>
             <div id="charContainer">
                 <div>{charList[pChar]?.Name}</div>
                 <img alt="character" src={charList[pChar]?.Img}/>

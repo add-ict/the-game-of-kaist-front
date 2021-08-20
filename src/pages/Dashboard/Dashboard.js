@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import "./Dashboard.scss"
 
-const Dashboard = ({rootRef}) => {
+const Dashboard = ({rootRef,CKPT,ckptRef}) => {
+    const [ups,setUps] = useState([false,false,false,false,false]);
     return (
         <>
             <br/>
