@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import RankingRow from "./RankingRow";
 import "./index.scss"
-import {useSelector} from "react-redux";
 
 const cmp = (x, pX) => {
     if (x == pX) return 0;
@@ -16,23 +15,19 @@ const toRank = (rank, prevRank) => {
                 ret.push([i, j, cmp(rank?.[j], prevRank?.[j])])
     return ret
 }
-const Ranking = () => {
+const Ranking = ({data,prev,classID}) => {
     const [R, setR] = useState(Array(4).fill(Array(5).fill([1, 0, 0])))
-    const {ranking, prevRanking} = useSelector(state => ({
-        ranking: state.publicDB?.ranking,
-        prevRanking: state.publicDB?.prevRanking,
-    }));
     useEffect(() => {
         setR([
-            toRank(ranking?.Relation, prevRanking?.Relation),
-            toRank(ranking?.Grades, prevRanking?.Grades),
-            toRank(ranking?.Health, prevRanking?.Health),
-            toRank(ranking?.Bonus, prevRanking?.Bonus),
+            toRank(data?.ranking?.R, prev?.ranking?.R),
+            toRank(data?.ranking?.G, prev?.ranking?.G),
+            toRank(data?.ranking?.H, prev?.ranking?.H),
+            toRank(data?.ranking?.B, prev?.ranking?.B),
         ]);
-    }, [ranking])
+    }, [data,prev])
     return (
         <div id="rankingContainer">
-            {Array(5).fill(0).map((x, i) => <RankingRow key={i} row={i} R={R}/>)}
+            {Array(5).fill(0).map((x, i) => <RankingRow key={i} row={i} R={R} data={data} prev={prev} classID={classID}/>)}
         </div>
     );
 };

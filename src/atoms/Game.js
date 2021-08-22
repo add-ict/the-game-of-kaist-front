@@ -8,19 +8,23 @@ import Ranking from "./Ranking"
 import Deck from "./Deck"
 import Conditional from "./Conditional";
 
-const Game = ({updater}) => {
+const Game = ({classID, admin,rootRef,CKPT, data, prev, timer, state, mapData, dataRef}) => {
+    const t=0;
+    if (!data) return <div><br/><h1>Loading</h1></div>;
+    else
     return (
         <div id="gameContainer">
             <div id="leftSide">
                 <div id="tempBG"/>
-                <Timer/>
-                <Turns/>
-                <Score/>
-                <Char updater={updater}/>
-                <Deck/>
-                <Ranking/>
+                <Timer rootRef={rootRef} timer={timer} state={state} t={t}/>
+                <Deck rootRef={rootRef} data={data} classID={classID}/>
+                <Turns rootRef={rootRef} state={state}/>
+
+                <Score rootRef={rootRef} data={data} classID={classID}/>
+                <Char admin={admin} data={data} classID={classID} dataRef={dataRef} t={t}/>
+                <Ranking classID={classID} rootRef={rootRef} data={data} prev={prev}/>
             </div>
-            <Conditional id="rightSide" updater={updater}/>
+            <Conditional id="rightSide" admin={admin} data={data} prev={prev} timer={timer} state={state} mapData={mapData} classID={classID} rootRef={rootRef} dataRef={dataRef} t={t}/>
         </div>
     );
 };

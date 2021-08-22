@@ -5,6 +5,7 @@
   box-sizing: border-box;
   user-select: none;
   transition: 0.1s;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 header {
@@ -20,16 +21,12 @@ header {
   z-index: 99;
 }
 
-#homeMain {
-  display: flex;
-}
-
-#dbRootSelect {
-  min-width: 10vh;
-}
-
 #headerText {
   position: fixed;
   z-index: 999;
   right: 0;
+}
+
+#homeMain {
+  display: flex;
 }

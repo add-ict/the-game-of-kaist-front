@@ -1,11 +1,10 @@
 import React from 'react';
 import Game from "../atoms/Game";
 
-const Admin = ({match, classID, setClassID, updater}) => {
-    setClassID(match.params.classID)
+const Admin = ({match, rootRef,CKPT, data, prev, timer, state, mapData,dataRef}) => {
+
     return <>
-        <div id="headerText">Debug:Admin#{classID.current}</div>
-        <Game updater={updater}/>
+        <Game classID={match.params.classID} rootRef={rootRef} admin={true} CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} dataRef={dataRef}/>
     </>;
 };
 

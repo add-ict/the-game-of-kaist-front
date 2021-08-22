@@ -1,19 +1,22 @@
-import React from "react";
-import {useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
 
 const turns = ["Turn 1", "Turn 2", "Fall 1",
-    "Turn 3", "Turn 4", "Fall 2",
-    "Turn 5", "Turn 6", "Spring 1",
-    "Turn 7", "Turn 8", "Spring 2",
+    "Turn 4", "Turn 5", "Fall 2",
+    "Turn 7", "Turn 8", "Spring 1",
+    "Turn 10", "Turn 11", "Spring 2",
 ]
-const Turns = () => {
-    const {turn,time} = useSelector(state => ({
-        turn: state.publicDB.turns,
-        time: state.publicDB.time,
-    }));
+const Turns = ({state}) => {
+    const {turn} = state;
+    const [blink, setBlink] = useState(true);
+    useEffect(()=>{
+        const id = setInterval(()=>{
+            setBlink(prev=>!prev)
+        },1000)
+        return ()=>{clearInterval(id)}
+    },[])
     return (
         <div id="turnsContainer">
-            {turns.map((x, i) => <div key={i} className={"turnBlock" + (((turn > i)||((turn==i)&&(time%2)==1)) ? " turnBlock-on" : "")}>{x}</div>)}
+            {turns.map((x, i) => <div key={i} className={"turnBlock" + (((turn > i)||((turn==i)&&blink)) ? " turnBlock-on" : "")}>{x}</div>)}
         </div>
     );
 };

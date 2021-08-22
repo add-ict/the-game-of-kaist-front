@@ -1,0 +1,154 @@
+.Season{
+  width: 100%;
+  height: 100%;
+  &__Class {
+    &Select {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 6%;
+      width: 70%;
+    }
+    &Button {
+      width: 13vh;
+      height: 13vh;
+      border-radius: 2vh;
+      text-align: center;
+      line-height: 13vh;
+      background-color: #dddfc8;
+      font-size: 3vh;
+      &ME {
+        width: 13vh;
+        height: 13vh;
+        border-radius: 2vh;
+        text-align: center;
+        line-height: 13vh;
+        background-color: #bdbdbd;
+        font-size: 3vh;
+      }
+      &S{
+        width: 13vh;
+        height: 13vh;
+        border-radius: 2vh;
+        text-align: center;
+        line-height: 13vh;
+        background-color: #cbde00;
+        font-size: 3vh;
+      }
+    }
+    &ButtonAdmin {
+      width: 13vh;
+      height: 13vh;
+      border-radius: 2vh;
+      text-align: center;
+      line-height: 13vh;
+      background-color: #dddfc8;
+      font-size: 3vh;
+      cursor: pointer;
+      &ME {
+        width: 13vh;
+        height: 13vh;
+        border-radius: 2vh;
+        text-align: center;
+        line-height: 13vh;
+        background-color: #bdbdbd;
+        font-size: 3vh;
+      }
+      &S{
+        width: 13vh;
+        height: 13vh;
+        border-radius: 2vh;
+        text-align: center;
+        line-height: 13vh;
+        background-color: #cad278;
+        font-size: 3vh;
+      }
+    }
+  }
+  &__title{
+    width: 100%;
+    height: 20%;
+    text-align: center;
+  }
+  &__inner{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &>span{
+      margin: 1vh;
+      font-size: 3vh;
+    }
+  }
+  &__inner32{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &>span{
+      font-size: 2vh;
+    }
+  }
+  &__innerAdmin{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &>span{
+      margin: 1vh;
+      font-size: 3vh;
+    }
+  }
+  &__innerAdmin32{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &>span{
+      font-size: 2vh;
+    }
+  }
+  &__desc{
+    font-size: 3.5vh;
+    margin: 3vh;
+  }
+  &__button{
+    text-align: center;
+    height: 10%;
+    &Inner{
+      background-color: #3dc947;
+      cursor: pointer;
+      width: 20vh;
+      height: 90%;
+      border-radius: 1vh;
+      line-height: 230%;
+      font-size: 3vh;
+      margin: auto;
+      &:active{
+        background-color: #28822e;
+      }
+    }
+  }
+}
+.R {
+  color: #dd32a9;
+}
+
+.G {
+  color: #6bca3f;
+}
+
+.H {
+  color: #32b6cc;
+}
+
+.B {
+  color: #ef7c30;
+}
+.Season32 {
+  font-size: 1vh !important;
+}

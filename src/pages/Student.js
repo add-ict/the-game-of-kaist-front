@@ -1,14 +1,10 @@
 import React from 'react';
 import Game from "../atoms/Game";
 
-const Student = ({match, classID, setClassID}) => {
-    console.log("render student")
-    setClassID(match.params.classID)
-
+const Student = ({match, rootRef,CKPT, data, prev, timer, state, mapData}) => {
     return (
         <>
-        <div id="headerText">Debug:Student#{classID.current}</div>
-        <Game/>
+        <Game classID={match.params.classID} rootRef={rootRef} admin={false} CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData}/>
         </>
     );
 };

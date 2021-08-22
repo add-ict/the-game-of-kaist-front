@@ -13,18 +13,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export const getAdminDB = (root = 0) => {
-    return firebase.database().ref(`/games/game${root}/admin`)
-}
-export const getDBs = (classID, root = 0) => {
-    console.log("getDBs",root,classID)
-    return {
-        publicDB: firebase.database().ref(`/games/game${root}/public`),
-        privateDB: firebase.database().ref(`/games/game${root}/private/${classID}`),
-        updater: x=>{
-            console.log('update',x,classID)
-            if(classID==-1) alert("!")
-            firebase.database().ref(`/games/game${root}/upstream/${classID}`).update(x)
-        }}
-
+export const getDB = ( root ) => {
+    return firebase.database().ref(root);
 }

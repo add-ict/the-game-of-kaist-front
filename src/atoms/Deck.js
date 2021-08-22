@@ -1,17 +1,11 @@
 import React from "react";
-import {useSelector} from "react-redux";
 
-const Deck = () => {
-    const {deck,cards} = useSelector(state => ({
-        deck: state.privateDB?.deck,
-        cards: state.publicDB?.cards,
-    }));
-    if (!cards) return <div id="deckContainer"/>
-    console.log(deck,cards)
+const Deck = ({data,classID}) => {
+    if (!data) return <div id="deckContainer"/>
     return (
         <div id="deckContainer">
-            {cards.map((x, i) => {
-                return <div key={i} className={deck[i] ? "cardoff" : ""}>{x}</div>
+            {data?.["class"]?.[classID]?.deck?.cards?.map((x, i) => {
+                return <div key={i} className={data?.["class"]?.[classID]?.deck?.used[i] ? "cardoff" : ""}>{x}</div>
             })}
         </div>
     );

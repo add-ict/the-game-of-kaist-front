@@ -1,28 +1,17 @@
 import React from "react";
 import Scorebar from "./Bar";
-import {useSelector} from "react-redux";
 
-const Score = () => {
-    const {minScore, maxScore, score} = useSelector(state => ({
-        minScore: state.privateDB?.scoreScale?.min,
-        maxScore: state.privateDB?.scoreScale?.max,
-        score: state.privateDB?.score,
-    }));
-    console.log('Relation',(score?.Relation - minScore) / (maxScore - minScore))
-    console.log('Grades',(score?.Grades - minScore) / (maxScore - minScore))
-    console.log('Health',(score?.Health - minScore) / (maxScore - minScore))
-    console.log('Bonus',(score?.Bonus - minScore) / (maxScore - minScore))
-    console.log(minScore,maxScore,score)
+const Score = ({data,prev,classID}) => {
     return (
         <div id="scoreContainer">
-            <Scorebar score={score?.Relation} fraction={(score?.Relation - minScore) / (maxScore - minScore)}
-                      color={"#5c1a40"}></Scorebar>
-            <Scorebar score={score?.Grades} fraction={(score?.Grades - minScore) / (maxScore - minScore)}
-                      color={"#02522b"}></Scorebar>
-            <Scorebar score={score?.Health} fraction={(score?.Health - minScore) / (maxScore - minScore)}
-                      color={"#2E3192"}></Scorebar>
-            <Scorebar score={score?.Bonus} fraction={(score?.Bonus - minScore) / (maxScore - minScore)}
-                      color={"#ad4122"}></Scorebar>
+            <Scorebar score={data?.["class"]?.[classID]?.score?.R?.value} fraction={(data?.["class"]?.[classID]?.score?.R?.value - data?.["class"]?.[classID]?.score?.R?.min) / (data?.["class"]?.[classID]?.score?.R?.max - data?.["class"]?.[classID]?.score?.R?.min)}
+                      color={"#b92193"}/>
+            <Scorebar score={data?.["class"]?.[classID]?.score?.G?.value} fraction={(data?.["class"]?.[classID]?.score?.G?.value - data?.["class"]?.[classID]?.score?.G?.min) / (data?.["class"]?.[classID]?.score?.G?.max - data?.["class"]?.[classID]?.score?.G?.min)}
+                      color={"#209b36"}/>
+            <Scorebar score={data?.["class"]?.[classID]?.score?.H?.value} fraction={(data?.["class"]?.[classID]?.score?.H?.value - data?.["class"]?.[classID]?.score?.H?.min) / (data?.["class"]?.[classID]?.score?.H?.max - data?.["class"]?.[classID]?.score?.H?.min)}
+                      color={"#226fa3"}/>
+            <Scorebar score={data?.["class"]?.[classID]?.score?.B?.value} fraction={(data?.["class"]?.[classID]?.score?.B?.value - data?.["class"]?.[classID]?.score?.B?.min) / (data?.["class"]?.[classID]?.score?.B?.max - data?.["class"]?.[classID]?.score?.B?.min)}
+                      color={"#b04326"}/>
         </div>
     );
 };

@@ -1,51 +1,65 @@
-import React from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import Map from "./Map";
-import Modal from "./Modal";
-import {useSelector} from "react-redux";
-import * as GS from "../gameStates";
-import AskC from "./SeasonUse/AskC";
-import AskCb from "./SeasonUse/AskCb";
-import AskCL from "./SeasonUse/AskCL";
-import AskR from "./SeasonUse/AskR";
-import AskRR from "./SeasonUse/AskRR";
-import AskR1R2b from "./SeasonUse/AskR1R2b";
-import AskNothing from "./SeasonUse/AskNothing";
-import UseBonus from "./SeasonUse/UseBonus";
 import Result from "./Result";
+import Minigame from "./Minigame";
+import SeasonSelect from "./Season/SeasonSelect";
+import "./Conditional.scss"
+import LastSelect from "./Last/LastSelect";
+import mapIcon from "../assets/mapIcon.png"
+import SeasonUse from "./Season/SeasonUse";
+import LastUse from "./Last/LastUse";
+import BonusUse from "./BonusUse";
 
-const Conditional = ({updater}) => {
-    const {lastSEASON_SELECT,lastLASTEVENT, modal, modalTitle, gameState} = useSelector(state => ({
-        turn: state.publicDB?.turns,
-        gameState: state.publicDB?.gameState,
-        modal: state.publicDB?.modal,
-        modalTitle: state.privateDB?.modalTitle,
-        lastSEASON_SELECT: state.privateDB?.lastSEASON_SELECT,
-        lastLASTEVENT: state.privateDB?.lastLASTEVENT,
-    }));
-    if (!updater) return <Map/>;
-    const onClick = updater(GS.gameStates[gameState]);
-    if (gameState == GS.MOVEMENT) return <Map onClick={onClick}/>;
-    else if (gameState == GS.MINIGAME) return <Modal title={modalTitle} innerHTMLs={modal} onSubmit={onClick}/>;
-    else if (gameState == GS.SEASON_SELECT) return <Modal title={modalTitle} innerHTMLs={modal} onSubmit={onClick}/>;
-    else if (gameState == GS.SEASON_USE && Number.isInteger(lastSEASON_SELECT?.askN))
-        return [<AskNothing title={lastSEASON_SELECT?.desc} onSubmit={onClick}/>,
-            <AskC title={lastSEASON_SELECT?.desc} onSubmit={onClick}/>,
-            <AskCb title={lastSEASON_SELECT?.desc} onSubmit={onClick}/>,
-            <AskCL title={lastSEASON_SELECT?.desc} onSubmit={onClick}/>,
-            <AskR title={lastSEASON_SELECT?.desc} onSubmit={onClick}/>,
-            <AskR1R2b title={lastSEASON_SELECT?.desc} onSubmit={onClick}/>,
-            <AskRR title={lastSEASON_SELECT?.desc} onSubmit={onClick}/>][lastSEASON_SELECT?.askN]
-    else if (gameState == GS.LASTEVENT) return <Modal title={modalTitle} innerHTMLs={modal} onSubmit={onClick}/>;
-    else if (gameState == GS.LASTEVENT_USE && Number.isInteger(lastLASTEVENT?.askN))
-        return [<AskNothing title={lastLASTEVENT?.desc} onSubmit={onClick} noB/>,
-            <AskC title={lastLASTEVENT?.desc} onSubmit={onClick} noB/>,
-            <AskCb title={lastLASTEVENT?.desc} onSubmit={onClick} noB/>,
-            <AskCL title={lastLASTEVENT?.desc} onSubmit={onClick} noB/>,
-            <AskR title={lastLASTEVENT?.desc} onSubmit={onClick} noB/>,
-            <AskR1R2b title={lastLASTEVENT?.desc} onSubmit={onClick} noB/>,
-            <AskRR title={lastLASTEVENT?.desc} onSubmit={onClick} noB/>][lastLASTEVENT?.askN]
-    else if (gameState == GS.USE_BONUS) return <UseBonus onSubmit={onClick} /> ;
-    else if (gameState == GS.RESULT) return <Result />;
-    else return <Map/>;
+const MOVEMENT = 1;
+const MINIGAME = 2;
+const SEASON_SELECT = 3;
+const SEASON_USE = 4;
+const LAST_SELECT = 5;
+const LAST_USE = 6;
+const BONUS_USE = 7;
+const RESULT = 8;
+
+const Conditional = ({mapData,state,dataRef,data,classID,admin,t}) => {
+    const [showMap,setShowMap] = useState(false);
+    const Component=useMemo(()=>{
+        if(!state) return <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin} t={t}/>;
+        switch(state.group) {
+            case MINIGAME:
+                return <Minigame mapData={mapData} data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+            case SEASON_SELECT:
+                return <SeasonSelect data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+            case SEASON_USE:
+                return <SeasonUse state={state} data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+            case LAST_SELECT:
+                return <LastSelect data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+            case LAST_USE:
+                return <LastUse data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+            case BONUS_USE:
+                return <BonusUse data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+            case RESULT:
+                return <Result data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+            default:
+                return <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin} t={t}/>;
+        }
+    });
+    useEffect(()=>{if(state.state===0) setShowMap(false);},[state.state]);
+    if (state?.turn!==12&&(state?.group===0 || state?.group===1 || !(state?.state===2 || state?.state===3))) return <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin} t={t}/>;
+    else {
+        return (
+            <div className="Conditional--contianer">
+
+                {showMap ?
+                    <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin}
+                         t={t}/> :
+                    <div className="Conditional--contianer__inner">
+                        {Component}
+                    </div>
+                }
+                <div className="Conditional--contianer__footer">
+                    <img src={mapIcon} alt={"show map"} onClick={()=>{setShowMap(prev=>!prev)}}/>
+                </div>
+            </div>
+        );
+    };
 };
 export default Conditional;
