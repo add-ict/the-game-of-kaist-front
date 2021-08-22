@@ -11,3 +11,21 @@
 .show {
   transform: translateX(0) !important;
 }
+.upsOFF {
+  width: 10vh;
+  height: 10vh;
+  text-align: center;
+  line-height: 10vh;
+  border-radius: 2vh;
+  background-color: gray;
+  margin: 1vh;
+}
+.upsON {
+  width: 10vh;
+  height: 10vh;
+  text-align: center;
+  line-height: 10vh;
+  border-radius: 2vh;
+  background-color: #fff200;
+  margin: 1vh;
+}

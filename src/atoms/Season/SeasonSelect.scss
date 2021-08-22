@@ -1,0 +1,115 @@
+.SeasonSelect--container{
+  width: 100%;
+  height: 100%;
+  &__title{
+    width: 100%;
+    height: 20%;
+    text-align: center;
+  }
+  &__inner{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__select{
+    width: 95%;
+    height: 30%;
+    border-radius: 2vh;
+    text-align: center;
+    background-color: #dddfc8;
+    display: flex;
+    align-items: center;
+    &Img {
+      background-color: red;
+      height: 14vh;
+      width: 14vh;
+      margin: 3vh;
+    }
+    &Text{
+      text-align: left;
+    }
+    &Title{
+      font-size: 4vh;
+      margin-bottom: 1vh;
+    }
+    &Desc {
+      font-size: 2.5vh;
+    }
+    &S{
+      width: 95%;
+      height: 30%;
+      border-radius: 2vh;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      background-color: #cbde00;
+    }
+  }
+  &__innerAdmin{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__selectAdmin{
+    width: 95%;
+    height: 30%;
+    border-radius: 2vh;
+    text-align: center;
+    background-color: #dddfc8;
+    display: flex;
+    align-items: center;
+    &S{
+      width: 95%;
+      height: 30%;
+      border-radius: 2vh;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      background-color: #cad278;
+    }
+    &:active{
+      background-color: #949586;
+    }
+  }
+  &__desc{
+    font-size: 3.5vh;
+    margin: 3vh;
+  }
+  &__button{
+    text-align: center;
+    height: 10%;
+    &Inner{
+      background-color: #3dc947;
+      width: 20vh;
+      height: 90%;
+      border-radius: 1vh;
+      line-height: 230%;
+      font-size: 3vh;
+      margin: auto;
+      &:active{
+        background-color: #28822e;
+      }
+    }
+  }
+}
+.R {
+  color: #dd32a9;
+}
+
+.G {
+  color: #6bca3f;
+}
+
+.H {
+  color: #32b6cc;
+}
+
+.B {
+  color: #ef7c30;
+}

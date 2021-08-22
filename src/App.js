@@ -8,6 +8,13 @@ import AdminRoute from "./pages/AdminRoute";
 import NotFound from "./pages/NotFound";
 import {getDB} from "./Firebase";
 
+const scoreChange = {
+    2: true,
+    4: true,
+    6: true,
+    7: true
+}
+
 const rootRef = getDB("/");
 const ckptRef = rootRef.child("CKPT");
 const timerRef = rootRef.child("timer");
@@ -35,7 +42,9 @@ const App = () => {
         return ()=>{timerRef.off()}
     },[]);
     useEffect(()=>{
-        stateRef.on("value",snapshot=>{setState(snapshot.val())})
+        stateRef.on("value",snapshot=>{
+            console.log("Updated state")
+            setState(snapshot.val())})
         return ()=>{stateRef.off()}
     },[]);
     useEffect(()=>{
@@ -56,7 +65,18 @@ const App = () => {
     },[]);
     useEffect(()=>{
         setData(turnGroups?.[turnGroup])
-        setPrev(turnGroups?.[data?.prev])
+        let newPrev=turnGroups?.[data?.prev];
+        if (state) {
+            console.log("thte",newPrev?.turnGroup?.split("-")?.[0]==state?.turn)
+            let cnt=0;
+            while (newPrev?.turnGroup?.split("-")?.[0]==state?.turn) {
+                console.log(newPrev?.turnGroup)
+                newPrev = turnGroups?.[newPrev?.prev];
+                cnt+=1;
+                if (cnt>10) break;
+            }
+        }
+        setPrev(newPrev)
         setDataRef(turnGroupsRef.child(turnGroup))
     },[turnGroup,turnGroups])
     return (
@@ -65,9 +85,6 @@ const App = () => {
                 <Link to="/">
                     <button>Home</button>
                 </Link>
-                <Link to="/dashboard">
-                    <button>Dashboard</button>
-                </Link>
             </header>
             <main>
                 <Switch>
@@ -75,7 +92,7 @@ const App = () => {
                            render={() => <Home rootRef={rootRef}/>}/>
                     <Route path="/app"
                            render={res => <StudentRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef} dataRef={dataRef}/>}/>
-                    <Route path="/dashboard" render={() => <Dashboard rootRef={rootRef} CKPT={CKPT} ckptRef={ckptRef} dataRef={dataRef}/>}/>
+                    <Route path="/dashboard" render={() => <Dashboard CKPT={CKPT} ckptRef={ckptRef} data={data} state={state} timerRef={timerRef} timer={timer}/>}/>
                     <Route path="/admin"
                            render={res => <AdminRoute CKPT={CKPT} data={data} prev={prev} timer={timer} state={state} mapData={mapData} match={res.match} rootRef={rootRef} dataRef={dataRef}/>}/>
                     <Route component={NotFound}/>

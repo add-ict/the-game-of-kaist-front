@@ -1,0 +1,110 @@
+.Minigame--container{
+  width: 100%;
+  height: 100%;
+  &__title{
+    width: 100%;
+    height: 20%;
+  }
+  &__inner{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__select{
+    width: 30%;
+    height: 95%;
+    background-color: #dddfc8;
+    border-radius: 2vh;
+    text-align: center;
+    &Title{
+      font-size: 4vh;
+      margin: 5vh;
+    }
+    &Value {
+      font-size: 6vh;
+      margin: 4vh;
+    }
+    &S{
+      width: 30%;
+      height: 95%;
+      border-radius: 2vh;
+      text-align: center;
+      background-color: #cad278;
+    }
+  }
+  &__innerAdmin{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__selectAdmin{
+    width: 30%;
+    height: 95%;
+    border-radius: 2vh;
+    text-align: center;
+    background-color: #dddfc8;
+    cursor: pointer;
+    &Title{
+      font-size: 4vh;
+      margin: 5vh;
+    }
+    &Value {
+      font-size: 6vh;
+      margin: 4vh;
+    }
+    &S{
+      width: 30%;
+      height: 95%;
+      border-radius: 2vh;
+      text-align: center;
+      background-color: #cad278;
+    }
+    &:active{
+      background-color: #949586;
+    }
+  }
+  &__cause{
+    font-size: 3vh;
+    margin: 2vh;
+  }
+  &__desc{
+    font-size: 3vh;
+    margin: 2vh;
+  }
+  &__button{
+    cursor: pointer;
+    text-align: center;
+    height: 10%;
+    &Inner{
+      background-color: #3dc947;
+      width: 20vh;
+      height: 90%;
+      border-radius: 1vh;
+      line-height: 230%;
+      font-size: 3vh;
+      margin: auto;
+      &:active{
+        background-color: #28822e;
+      }
+    }
+  }
+}
+.R {
+  color: #dd32a9;
+}
+
+.G {
+  color: #6bca3f;
+}
+
+.H {
+  color: #32b6cc;
+}
+
+.B {
+  color: #ef7c30;
+}

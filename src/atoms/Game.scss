@@ -22,7 +22,7 @@
   height: 100vh;
   width: 100vw;
   left: 3.4vh;
-  top: 24vh;
+  top: 23.5vh;
 
   & * {
     position: absolute;
@@ -167,8 +167,11 @@
     width: 3vh;
     background-color: whitesmoke;
     border-radius: 0.5vh;
-    margin: 4px;
+    margin: 3px;
     box-shadow: 2px 2px 2px #1d1212;
+    line-height: 4vh;
+    text-align: center;
+    font-size: 3vh;
   }
 
   & .cardoff {

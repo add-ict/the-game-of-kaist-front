@@ -15,7 +15,7 @@ const toRank = (rank, prevRank) => {
                 ret.push([i, j, cmp(rank?.[j], prevRank?.[j])])
     return ret
 }
-const Ranking = ({data,prev}) => {
+const Ranking = ({data,prev,classID}) => {
     const [R, setR] = useState(Array(4).fill(Array(5).fill([1, 0, 0])))
     useEffect(() => {
         setR([
@@ -27,7 +27,7 @@ const Ranking = ({data,prev}) => {
     }, [data,prev])
     return (
         <div id="rankingContainer">
-            {Array(5).fill(0).map((x, i) => <RankingRow key={i} row={i} R={R}/>)}
+            {Array(5).fill(0).map((x, i) => <RankingRow key={i} row={i} R={R} data={data} prev={prev} classID={classID}/>)}
         </div>
     );
 };
