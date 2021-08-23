@@ -67,14 +67,9 @@ const App = () => {
         setData(turnGroups?.[turnGroup])
         let newPrev=turnGroups?.[data?.prev];
         if (state) {
-            console.log("thte",newPrev?.turnGroup?.split("-")?.[0]==state?.turn)
-            let cnt=0;
-            while (newPrev?.turnGroup?.split("-")?.[0]==state?.turn) {
-                console.log(newPrev?.turnGroup)
-                newPrev = turnGroups?.[newPrev?.prev];
-                cnt+=1;
-                if (cnt>10) break;
-            }
+            let iter=2;
+            if (state.group!==8&&state.group%2===0) iter=3;
+            for (let i=0;i<iter-1;i++) newPrev = turnGroups?.[newPrev?.prev];
         }
         setPrev(newPrev)
         setDataRef(turnGroupsRef.child(turnGroup))

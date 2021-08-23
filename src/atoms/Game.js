@@ -20,7 +20,7 @@ const Game = ({classID, admin,rootRef,CKPT, data, prev, timer, state, mapData, d
                 <Deck rootRef={rootRef} data={data} classID={classID}/>
                 <Turns rootRef={rootRef} state={state}/>
 
-                <Score rootRef={rootRef} data={data} classID={classID}/>
+                <Score rootRef={rootRef} data={data} prev={prev} classID={classID}/>
                 <Char admin={admin} data={data} classID={classID} dataRef={dataRef} t={t}/>
                 <Ranking classID={classID} rootRef={rootRef} data={data} prev={prev}/>
             </div>
