@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./Game.scss"
 import Timer from "./Timer";
 import Turns from "./Turns";
@@ -9,8 +9,15 @@ import Deck from "./Deck"
 import Conditional from "./Conditional";
 
 const Game = ({classID, admin,rootRef,CKPT, data, prev, timer, state, mapData, dataRef}) => {
-    const t=0;
-    if (!data) return <div><br/><h1>Loading</h1></div>;
+    const [t,setT] = useState(0);
+    if (!data) return <div><br/>
+        <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>;
     else
     return (
         <div id="gameContainer">

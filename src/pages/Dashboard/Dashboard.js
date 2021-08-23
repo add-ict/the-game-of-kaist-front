@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "./Dashboard.scss"
 
 const MOVEMENT = 1;
@@ -30,15 +30,41 @@ const Dashboard = ({data,state,CKPT,ckptRef,timerRef,timer}) => {
             <div>Turn {state.turn}</div>
             <div>{GS[state?.group]}</div>
             <div>{timer.time}</div>
-            <button onClick={()=>{ckptRef.set(false)}} disabled={!CKPT}>APPROVE</button><br/>
-            <button onClick={()=>{timerRef.update({until:0,time:0})}}>SKIP TIME</button><br/>
-            <button onClick={()=>{timerRef.update({until:timer.until-5000})}}>-5s</button>
-            <button onClick={()=>{timerRef.update({until:timer.until+5000})}}>+5s</button>
-            <button onClick={()=>{timerRef.update({until:timer.until+60000})}}>+1min</button>
-            <button onClick={()=>{timerRef.update({until:timer.until+300000})}}>+5min</button>
-            <div style={{"display":"flex"}}>
-                {Array(5).fill(0).map((x,i)=><div className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]])?"upsON":"upsOFF"}>{i}</div>)}
+            <button onClick={() => {
+                ckptRef.set(false)
+            }} disabled={!CKPT}>APPROVE
+            </button>
+            <br/>
+            <button onClick={() => {
+                timerRef.update({until: 0, time: 0})
+            }}>SKIP TIME
+            </button>
+            <br/>
+            <button onClick={() => {
+                timerRef.update({until: timer.until - 5000})
+            }}>-5s
+            </button>
+            <button onClick={() => {
+                timerRef.update({until: timer.until + 5000})
+            }}>+5s
+            </button>
+            <button onClick={() => {
+                timerRef.update({until: timer.until + 60000})
+            }}>+1min
+            </button>
+            <button onClick={() => {
+                timerRef.update({until: timer.until + 300000})
+            }}>+5min
+            </button>
+            <div style={{"display": "flex"}}>
+                {Array(5).fill(0).map((x, i) => <div
+                    className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]]) ? "upsON" : "upsOFF"}>{i}</div>)}
             </div>
+            {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count ? <div>
+                <div>G: {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.G} {Math.floor(data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.G)}</div>
+                <div>H: {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.H} {Math.floor(data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.H)}</div>
+                <div>R: {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.R} {Math.floor(data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.R)}</div>
+            </div> : null}
         </>
     );
 };

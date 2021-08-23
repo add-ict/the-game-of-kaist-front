@@ -30,7 +30,7 @@ const Season32 = ({data,dataRef,admin,classID,t}) => {
                         )
                         :null}
                     <div className="Season__ClassSelect">
-                        {Array(6).fill(0).map((x,i)=><div className={"Season__ClassButtonAdmin"+(xx===i?"S":"")+" small"}
+                        {Array(3).fill(0).map((x,i)=><div className={"Season__ClassButtonAdmin"+(xx===i?"S":"")+" small"}
                                                           onClick={()=>{setXx(i)}}
                         >
                             {i+1}
@@ -76,7 +76,7 @@ const Season32 = ({data,dataRef,admin,classID,t}) => {
                         )
                         :null}
                     <div className="Season__ClassSelect">
-                        {Array(6).fill(0).map((x,i)=><div className={"Season__ClassButton"+(result?.x===i?"S":"")+" small"}
+                        {Array(3).fill(0).map((x,i)=><div className={"Season__ClassButton"+(result?.x===i?"S":"")+" small"}
                         >
                             {i+1}
                         </div>)}

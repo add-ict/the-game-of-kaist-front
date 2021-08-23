@@ -1,8 +1,10 @@
 import React, { useState} from "react";
 import "./Season.scss"
-const Season0x = ({data,dataRef,admin,classID,t}) => {
+const Selected = ["선택한 반의 수: ",""];
+const Season0x = ({data,dataRef,admin,classID,t,state}) => {
     const result = data?.["class"]?.[classID]?.upstream?.SEASON_SELECT;
     const downstream = data?.["class"]?.[classID]?.downstream?.SEASON_USE;
+    if(admin) dataRef.child("class").child(classID).child("upstream/SEASON_USE").set("No ");
     return (
         <div className="Season">
             <div className="Season__title">
@@ -26,8 +28,8 @@ const Season0x = ({data,dataRef,admin,classID,t}) => {
                         }
                     )
                     :null}
+                {state.turn===2?(Selected?.[t]+downstream?.count):null}
             </div>
-
         </div>
     );
 }
