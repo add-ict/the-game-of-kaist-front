@@ -27,7 +27,7 @@ const Conditional = ({mapData,state,dataRef,data,classID,admin,t}) => {
             case MINIGAME:
                 return <Minigame mapData={mapData} data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
             case SEASON_SELECT:
-                return <SeasonSelect data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
+                return <SeasonSelect state={state} data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
             case SEASON_USE:
                 return <SeasonUse state={state} data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
             case LAST_SELECT:
