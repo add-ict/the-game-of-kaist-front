@@ -14,7 +14,7 @@ const Last1 = ({data,dataRef,admin,classID,t}) => {
                     {downstream?.desc?.[t]}
                 </div>
                 <div className={"LastSelect--container__innerAdmin"}>
-                    {Array(3).fill(0).map((y,j)=><div
+                    {Array(3).fill(0)?.map((y,j)=><div
                         className={"LastSelect--container__selectAdmin"+(s===j?"S":"")}
                         onClick={()=>{setS(j)}}
                     >
@@ -39,7 +39,7 @@ const Last1 = ({data,dataRef,admin,classID,t}) => {
                     {downstream?.desc?.[t]}
                 </div>
                 <div className={"LastSelect--container__inner"}>
-                    {Array(3).fill(0).map((y,j)=><div
+                    {Array(3).fill(0)?.map((y,j)=><div
                         className={"LastSelect--container__select"+(result?.RGHB===RGH[j]?"S":"")}
                     >
                         <div className="LastSelect--container__selectTitle"><span className={RGH[j]}>{RGH[j]}</span></div>

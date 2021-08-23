@@ -32,7 +32,7 @@ const SeasonSelect = ({data,dataRef,admin,classID,state,t}) => {
                 <div className="SeasonSelect--container__title">
                     <div className="SeasonSelect--container__desc">
                         {downstream?.title?.[t]?.split("\n")?
-                            downstream?.title?.[t]?.split("\n").map((x,i)=>{
+                            downstream?.title?.[t]?.split("\n")?.map((x,i)=>{
                                     if (i==0) return <span>{x}</span>
                                     return <span><br/>{x}</span>
                                 }
@@ -41,7 +41,7 @@ const SeasonSelect = ({data,dataRef,admin,classID,state,t}) => {
                     </div>
                 </div>
                 <div className={"SeasonSelect--container__innerAdmin"}>
-                    {Array(3).fill(0).map((y,j)=>(
+                    {Array(3).fill(0)?.map((y,j)=>(
                         <div
                         className={"SeasonSelect--container__selectAdmin"+(s===j?"S":"")}
                         onClick={()=>{setS(j)}}
@@ -75,7 +75,7 @@ const SeasonSelect = ({data,dataRef,admin,classID,state,t}) => {
                     </div>
                 </div>
                 <div className={"SeasonSelect--container__inner"}>
-                    {Array(3).fill(0).map((y,j)=>(
+                    {Array(3).fill(0)?.map((y,j)=>(
                         <div
                             className={"SeasonSelect--container__select"+(result?.result===j?"S":"")}
                         >

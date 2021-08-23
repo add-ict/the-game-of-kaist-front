@@ -7,6 +7,7 @@ import Char from "./Char"
 import Ranking from "./Ranking"
 import Deck from "./Deck"
 import Conditional from "./Conditional";
+import Language from "./Language";
 
 const Game = ({classID, admin,rootRef,CKPT, data, prev, timer, state, mapData, dataRef}) => {
     const [t,setT] = useState(0);
@@ -23,6 +24,7 @@ const Game = ({classID, admin,rootRef,CKPT, data, prev, timer, state, mapData, d
         <div id="gameContainer">
             <div id="leftSide">
                 <div id="tempBG"/>
+                <Language t={t} setT={setT} />
                 <Timer rootRef={rootRef} timer={timer} state={state} t={t}/>
                 <Deck rootRef={rootRef} data={data} classID={classID}/>
                 <Turns rootRef={rootRef} state={state}/>

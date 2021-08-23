@@ -10,7 +10,7 @@ const Season1x = ({data,dataRef,admin,classID,t}) => {
                 <div className="Season__title">
                     <div className="Season__desc">
                         {downstream?.title?.[t]?.split("\n")?
-                            downstream?.title?.[t]?.split("\n").map((x,i)=>{
+                            downstream?.title?.[t]?.split("\n")?.map((x,i)=>{
                                     if (i==0) return <span>{x}</span>
                                     return <span><br/>{x}</span>
                                 }
@@ -22,14 +22,14 @@ const Season1x = ({data,dataRef,admin,classID,t}) => {
                 </div>
                 <div className="Season__innerAdmin">
                     {downstream?.desc?.[t]?.split("\n")?
-                        downstream?.desc?.[t]?.split("\n").map((x,i)=>{
+                        downstream?.desc?.[t]?.split("\n")?.map((x,i)=>{
                                 if (i==0) return <span>{x}</span>
                                 return <span>{x}</span>
                             }
                         )
                         :null}
                     <div className="Season__ClassSelect">
-                        {Array(5).fill(0).map((x,i)=><div className={"Season__ClassButton"+(i!=classID?"Admin":"AdminME")+(s===i?"S":"")}
+                        {Array(5).fill(0)?.map((x,i)=><div className={"Season__ClassButton"+(i!=classID?"Admin":"AdminME")+(s===i?"S":"")}
                             onClick={()=>{if(i!=classID) setS(i)}}
                         >{data?.["class"]?.[i]?.name}</div>)}
                     </div>
@@ -49,7 +49,7 @@ const Season1x = ({data,dataRef,admin,classID,t}) => {
                 <div className="Season__title">
                     <div className="Season__desc">
                         {downstream?.title?.[t]?.split("\n")?
-                            downstream?.title?.[t]?.split("\n").map((x,i)=>{
+                            downstream?.title?.[t]?.split("\n")?.map((x,i)=>{
                                     if (i==0) return <span>{x}</span>
                                     return <span><br/>{x}</span>
                                 }
@@ -61,14 +61,14 @@ const Season1x = ({data,dataRef,admin,classID,t}) => {
                 </div>
                 <div className="Season__inner">
                     {downstream?.desc?.[t]?.split("\n")?
-                        downstream?.desc?.[t]?.split("\n").map((x,i)=>{
+                        downstream?.desc?.[t]?.split("\n")?.map((x,i)=>{
                                 if (i==0) return <span>{x}</span>
                                 return <span>{x}</span>
                             }
                         )
                         :null}
                     <div className="Season__ClassSelect">
-                        {Array(5).fill(0).map((x,i)=><div className={"Season__ClassButton"+(i!=classID?"":"ME")+(result?.classID===i?"S":"")}
+                        {Array(5).fill(0)?.map((x,i)=><div className={"Season__ClassButton"+(i!=classID?"":"ME")+(result?.classID===i?"S":"")}
                         >{data?.["class"]?.[i]?.name}</div>)}
                     </div>
                 </div>

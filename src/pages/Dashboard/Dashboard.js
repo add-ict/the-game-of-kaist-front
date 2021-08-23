@@ -20,15 +20,32 @@ const GS={
     7: "BONUS_USE",
     8: "RESULT"
 }
-
+const groupName = {
+    [-1]:["일시정지", "PAUSED"],
+    0:["캐릭터 선택", "캐릭터 선택(TBT)"],
+    1:["이동", "이동(TBT)"],
+    2:["미니게임", "미니게임(TBT)"],
+    3:["시즌 선택", "시즌 선택(TBT)"],
+    4:["시즌 사용", "시즌 사용(TBT)"],
+    5:["학과 선택", "학과 선택(TBT)"],
+    6:["학과 효과 적용", "학과 효과 적용(TBT)"],
+    7:["보너스 분배", "보너스 분배(TBT)"],
+    8:["결과", "RESULT"],
+}
+const turns = ["Turn 1", "Turn 2", "Fall 1",
+    "Turn 4", "Turn 5", "Fall 2",
+    "Turn 7", "Turn 8", "Spring 1",
+    "Turn 10", "Turn 11", "Spring 2",
+]
 const Dashboard = ({data,state,CKPT,ckptRef,timerRef,timer}) => {
     return (
         <>
             <br/>
             <br/>
             <h1>Dashboard</h1>
-            <div>Turn {state.turn}</div>
-            <div>{GS[state?.group]}</div>
+            <div>{turns?.[state?.turn]}</div>
+            <div>{GS?.[state?.group]}</div>
+            <div>{groupName?.[state?.group]?.[0]},{groupName?.[state?.group]?.[1]}</div>
             <div>{timer.time}</div>
             <button onClick={() => {
                 ckptRef.set(false)

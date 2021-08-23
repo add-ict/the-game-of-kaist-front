@@ -5,7 +5,7 @@ const Deck = ({data,classID}) => {
     return (
         <div id="deckContainer">
             {data?.["class"]?.[classID]?.deck?.cards?.map((x, i) => {
-                return <div key={i} className={data?.["class"]?.[classID]?.deck?.used[i] ? "cardoff" : ""}>{x}</div>
+                return <div key={i} className={(data?.["class"]?.[classID]?.deck?.used[i] ? "cardoff" : "")+" cardN"+x}>{x}</div>
             })}
         </div>
     );

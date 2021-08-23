@@ -11,7 +11,7 @@
 }
 
 #tempBG {
-  background-image: url(../assets/Backgroundx.png);
+  background-image: url(../assets/Backgroundy.png);
   background-repeat: no-repeat;
   background-size: auto 100vh;
   height: 100vh;
@@ -101,10 +101,10 @@
     }
     font-size: 2vh;
     position: absolute;
-    width: 8.3vh;
+    width: 10.3vh;
     text-align: center;
     //background-color: red;
-    left: 25.0vh;
+    left: 23.4vh;
     transform: translateY(-2.3vh);
   }
 }
@@ -215,4 +215,13 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.language-change {
+  position: fixed;
+  right:4px;
+  top: 2px;
+  background-color: #9cffd1;
+  padding: 0.4vh;
+  border-radius: 3px;
 }
