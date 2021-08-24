@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import "./Season.scss"
-const Selected = ["선택한 반의 수: ",""];
+const Selected = ["선택한 반의 수: ","Classes that selected:"];
 const Season0x = ({data,dataRef,admin,classID,t,state}) => {
     const result = data?.["class"]?.[classID]?.upstream?.SEASON_SELECT;
     const downstream = data?.["class"]?.[classID]?.downstream?.SEASON_USE;

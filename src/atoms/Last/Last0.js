@@ -2,10 +2,9 @@ import React, { useState} from "react";
 import "./LastSelect.scss"
 const RGH="RGH"
 const L=[
-    [<span><span className="R">R</span>↔<span className="G">G</span></span>,""],
-    [<span><span className="G">G</span>↔<span className="H">H</span></span>,""],
-    [<span><span className="H">H</span>↔<span className="R">R</span></span>,""],
-
+    <span><span className="R">R</span>↔<span className="G">G</span></span>,
+    <span><span className="G">G</span>↔<span className="H">H</span></span>,
+    <span><span className="H">H</span>↔<span className="R">R</span></span>,
 ]
 const Last0 = ({data,dataRef,admin,classID,t}) => {
     const result = data?.["class"]?.[classID]?.upstream?.LAST_USE;
@@ -24,7 +23,7 @@ const Last0 = ({data,dataRef,admin,classID,t}) => {
                         className={"LastSelect--container__selectAdmin"+(s===j?"S":"")}
                         onClick={()=>{setS(j)}}
                     >
-                        <div className="LastSelect--container__selectTitle">{L[j][t]}</div>
+                        <div className="LastSelect--container__selectTitle">{L[j]}</div>
                     </div>)}
                 </div>
                 <div className="LastSelect--container__button">
@@ -50,7 +49,7 @@ const Last0 = ({data,dataRef,admin,classID,t}) => {
                     {Array(3).fill(0)?.map((y,j)=><div
                         className={"LastSelect--container__select"+(result?.RGHB1===RGH[j]?"S":"")}
                     >
-                        <div className="LastSelect--container__selectTitle">{L[j][t]}</div>
+                        <div className="LastSelect--container__selectTitle">{L[j]}</div>
                     </div>)}
                 </div>
                 {admin?<div className="LastSelect--container__button">

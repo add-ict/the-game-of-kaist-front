@@ -11,7 +11,7 @@ import Language from "./Language";
 import {notification} from "antd";
 import Result from "./Result";
 const Game = ({classID, admin,rootRef,CKPT, data, prev, timer, state, mapData, dataRef}) => {
-    const [t,setT] = useState(0);
+    const [t,setT] = useState(1);
     const messageList = useRef([]);
     useEffect(()=>{
         const messages = data?.class?.[classID]?.MESSAGE;
@@ -23,6 +23,7 @@ const Game = ({classID, admin,rootRef,CKPT, data, prev, timer, state, mapData, d
                     notification.open({
                         message: messages[id].message,
                         description: messages[id].description,
+                        duration: 7,
                         onClick: () => {
                             console.log('Notification Clicked!');
                         },

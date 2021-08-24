@@ -13,7 +13,7 @@ const LastUse = ({data,dataRef,admin,classID,t}) => {
         case 2:
             return <Last2 data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>
         default:
-            return <div>Error<br/>Report to Director</div>
+            return <div>Error<br/>Report to Director<br/><br/>You did NOT select! :(</div>
     }
 }
 
