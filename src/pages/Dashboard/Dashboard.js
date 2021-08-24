@@ -97,8 +97,7 @@ const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) =
                     <h2>브로드캐스트</h2>
                     <label>메시지: </label><input value={BM} onChange={res=>setBM(res.target.value)}/>
                     <Button onClick={()=>{
-                        console.log()
-                        for (let i;i<5;i++) {
+                        for (let i=0;i<5;i++) {
                             dataRef.child("class").child(i).child("MESSAGE").push().set({
                                 message: "Message from the head director",
                                 description: BM,
