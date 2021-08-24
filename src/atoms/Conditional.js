@@ -10,6 +10,7 @@ import SeasonUse from "./Season/SeasonUse";
 import LastUse from "./Last/LastUse";
 import BonusUse from "./BonusUse";
 
+
 const MOVEMENT = 1;
 const MINIGAME = 2;
 const SEASON_SELECT = 3;
@@ -18,6 +19,7 @@ const LAST_SELECT = 5;
 const LAST_USE = 6;
 const BONUS_USE = 7;
 const RESULT = 8;
+
 
 const Conditional = ({mapData,state,dataRef,data,classID,admin,t}) => {
     const [showMap,setShowMap] = useState(false);
@@ -36,8 +38,6 @@ const Conditional = ({mapData,state,dataRef,data,classID,admin,t}) => {
                 return <LastUse data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
             case BONUS_USE:
                 return <BonusUse data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
-            case RESULT:
-                return <Result data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>;
             default:
                 return <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin} t={t}/>;
         }

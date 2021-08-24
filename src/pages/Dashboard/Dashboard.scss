@@ -29,3 +29,13 @@
   background-color: #fff200;
   margin: 1vh;
 }
+.dashboard--container {
+  &>div>div {
+    border: 1px solid black;
+    margin: 2vh;
+    padding: 2vh;
+    &>h2 {
+      border-bottom: 1px dashed black;
+    }
+  }
+}

@@ -102,7 +102,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
                 "</div>"
             )
         */
-    }, [mapData]);
+    }, [mapData,t]);
     return (
         <svg id="mapContainer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1115.51722 876.47781">
             {paths.map((x, i) => {

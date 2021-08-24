@@ -1,5 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./Dashboard.scss"
+import {Button, Checkbox, Divider, Input, InputNumber} from 'antd';
+import {Link} from "react-router-dom";
+
+const CheckboxGroup = Checkbox.Group;
+const plainOptions = ['Class 0', 'Class 1','Class 2','Class 3','Class 4'];
+const defaultCheckedList = [];
 
 const MOVEMENT = 1;
 const MINIGAME = 2;
@@ -22,67 +28,113 @@ const GS={
 }
 const groupName = {
     [-1]:["일시정지", "PAUSED"],
-    0:["캐릭터 선택", "캐릭터 선택(TBT)"],
-    1:["이동", "이동(TBT)"],
-    2:["미니게임", "미니게임(TBT)"],
-    3:["시즌 선택", "시즌 선택(TBT)"],
-    4:["시즌 사용", "시즌 사용(TBT)"],
-    5:["학과 선택", "학과 선택(TBT)"],
-    6:["학과 효과 적용", "학과 효과 적용(TBT)"],
-    7:["보너스 분배", "보너스 분배(TBT)"],
-    8:["결과", "RESULT"],
+    0:["캐릭터 선택", "Character Selection"],
+    1:["이동", "Move!"],
+    2:["미니게임", "Mini Game"],
+    3:["시즌 선택", "Season Selection"],
+    4:["시즌 사용", "Season Application"],
+    5:["학과 선택", "Department Selection"],
+    6:["학과 효과 적용", "Department Effect"],
+    7:["보너스 분배", "Bonus Distribution"],
+    8:["결과", "Result"],
 }
+
 const turns = ["Turn 1", "Turn 2", "Fall 1",
     "Turn 4", "Turn 5", "Fall 2",
     "Turn 7", "Turn 8", "Spring 1",
     "Turn 10", "Turn 11", "Spring 2",
 ]
-const Dashboard = ({data,state,CKPT,ckptRef,timerRef,timer}) => {
+const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) => {
+
+    const [checkedList, setCheckedList] = React.useState(defaultCheckedList);
+    const [indeterminate, setIndeterminate] = React.useState(false);
+    const [checkAll, setCheckAll] = React.useState(false);
+    const [BM,setBM] = useState("");
+    const [time,setTime] = useState(60);
+
+    const onChange = list => {
+        setCheckedList(list);
+        setIndeterminate(!!list.length && list.length < plainOptions.length);
+        setCheckAll(list.length === plainOptions.length);
+    };
+
+    const onCheckAllChange = e => {
+        setCheckedList(e.target.checked ? plainOptions : []);
+        setIndeterminate(false);
+        setCheckAll(e.target.checked);
+    };
+
     return (
-        <>
-            <br/>
-            <br/>
+        <div style={{"margin":"5vh"}} className="dashboard--container">
             <h1>Dashboard</h1>
-            <div>{turns?.[state?.turn]}</div>
-            <div>{GS?.[state?.group]}</div>
-            <div>{groupName?.[state?.group]?.[0]},{groupName?.[state?.group]?.[1]}</div>
-            <div>{timer.time}</div>
-            <button onClick={() => {
-                ckptRef.set(false)
-            }} disabled={!CKPT}>APPROVE
-            </button>
-            <br/>
-            <button onClick={() => {
-                timerRef.update({until: 0, time: 0})
-            }}>SKIP TIME
-            </button>
-            <br/>
-            <button onClick={() => {
-                timerRef.update({until: timer.until - 5000})
-            }}>-5s
-            </button>
-            <button onClick={() => {
-                timerRef.update({until: timer.until + 5000})
-            }}>+5s
-            </button>
-            <button onClick={() => {
-                timerRef.update({until: timer.until + 60000})
-            }}>+1min
-            </button>
-            <button onClick={() => {
-                timerRef.update({until: timer.until + 300000})
-            }}>+5min
-            </button>
-            <div style={{"display": "flex"}}>
-                {Array(5).fill(0).map((x, i) => <div
-                    className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]]) ? "upsON" : "upsOFF"}>{i}</div>)}
+            <Link to="/home">
+                <Button>
+                    Home
+                </Button>
+            </Link>
+            <div style={{"display":"flex"}}>
+                <div>
+                    <h2>현재 상태</h2>
+                    <div>{turns?.[state?.turn]}</div>
+                    <div>{GS?.[state?.group]}</div>
+                    <div>{groupName?.[state?.group]?.[0]},{groupName?.[state?.group]?.[1]}</div>
+                    <div>남은 시간: {timer.time}</div>
+                    <Button onClick={() => {
+                        ckptRef.set(false)
+                    }} disabled={!CKPT}>APPROVE
+                    </Button>
+                </div>
+
+                <br/>
+                <div>
+                    <h2>시간 변경</h2>
+                    <InputNumber defaultValue={60} onChange={v=>setTime(v)} />
+                    <Button onClick={()=>{
+                        timerRef.update({until: timer.until + time*1000})
+                    }}>증감</Button>
+                </div>
+                <div>
+                    <h2>선택 완료</h2>
+                    <div style={{"display": "flex"}}>
+                        {Array(5).fill(0).map((x, i) => <div
+                            className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]]) ? "upsON" : "upsOFF"}>{i}</div>)}
+                    </div>
+                </div>
             </div>
-            {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count ? <div>
-                <div>G: {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.G} {Math.floor(data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.G)}</div>
-                <div>H: {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.H} {Math.floor(data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.H)}</div>
-                <div>R: {data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.R} {Math.floor(data?.["class"]?.[0]?.downstream?.SEASON_USE?.count?.R)}</div>
-            </div> : null}
-        </>
+            <div style={{"display":"flex"}}>
+                <div>
+                    <h2>시뮬레이션 용</h2>
+                    <Button onClick={() => {
+                        timerRef.update({until: 0, time: 0})
+                    }}>SKIP TIME
+                    </Button>
+                    <Button onClick={() => {
+                        reloadRef.set(Date.now()-5000);
+                    }}>RELOAD ALL
+                    </Button>
+                </div>
+                <div style={{"width":"60vh"}}>
+                    <h2>브로드캐스트</h2>
+                    수신인
+                    <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
+                        Check all
+                    </Checkbox>
+                    <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />
+
+                    <label>메시지: </label><input value={BM} onChange={res=>setBM(res.target.value)} />
+                    <Button onClick={()=>{
+                        console.log("DashB",checkedList)
+                        for (const checked in checkedList) {
+                            dataRef.child("class").child(checked).child("MESSAGE").push().set({
+                                message: "Message from the head director",
+                                description: BM,
+                                life: Date.now()+3000
+                            })
+                        }
+                    }}>Send</Button>
+                </div>
+            </div>
+        </div>
     );
 };
 
