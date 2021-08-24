@@ -22,7 +22,7 @@
   height: 100vh;
   width: 100vw;
   left: 3.4vh;
-  top: 22.5vh;
+  top: 23.5vh;
 
   & * {
     position: absolute;
@@ -121,10 +121,14 @@
     width: 5vh;
     height: 5vh;
     border-radius: 1vh;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: auto 5vh;
     cursor: pointer;
+    background-color: #e8eac9;
+    &>img{
+      width: 5vh;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }
 
@@ -137,11 +141,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  font-size: 2vh;
+  font-size: 1.5vh;
 
   & > div {
     width: 18vh;
-    height: 2.5vh;
+    //height: 2.5vh;
     text-align: center;
   }
 
@@ -225,11 +229,3 @@
   padding: 0.4vh;
   border-radius: 3px;
 }
-/*
-.cardN1{
-  height: 4vh;
-  width: 3vh;
-  background: url(../assets/numbers.png) 2px 0px;
-  background-size: 18.8vh 10vh;
-}
- */

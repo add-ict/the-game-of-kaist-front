@@ -63,7 +63,16 @@ const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) =
         setIndeterminate(false);
         setCheckAll(e.target.checked);
     };
-
+    const sendMSG = ()=>{
+        for (const checked in checkedList) {
+            dataRef.child("class").child(checked).child("MESSAGE").push().set({
+                message: "Message from the head director",
+                description: BM,
+                life: Date.now()+3000
+            })
+        }
+        setBM("")
+    }
     return (
         <div style={{"margin":"5vh"}} className="dashboard--container">
             <h1>Dashboard</h1>
@@ -121,17 +130,8 @@ const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) =
                     </Checkbox>
                     <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />
 
-                    <label>메시지: </label><input value={BM} onChange={res=>setBM(res.target.value)} />
-                    <Button onClick={()=>{
-                        console.log("DashB",checkedList)
-                        for (const checked in checkedList) {
-                            dataRef.child("class").child(checked).child("MESSAGE").push().set({
-                                message: "Message from the head director",
-                                description: BM,
-                                life: Date.now()+3000
-                            })
-                        }
-                    }}>Send</Button>
+                    <label>메시지: </label><input value={BM} onChange={res=>setBM(res.target.value)}/>
+                    <Button onClick={sendMSG} >Send</Button>
                 </div>
             </div>
         </div>
