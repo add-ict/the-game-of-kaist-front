@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
 import "./Dashboard.scss"
-import {Button, Checkbox, Divider, Input, InputNumber} from 'antd';
+import {Button, InputNumber} from 'antd';
 import {Link} from "react-router-dom";
-
-const CheckboxGroup = Checkbox.Group;
-const plainOptions = ['Class 0', 'Class 1','Class 2','Class 3','Class 4'];
-const defaultCheckedList = [];
-
+import CHAR from "../../assets/char.png"
 const MOVEMENT = 1;
 const MINIGAME = 2;
 const SEASON_SELECT = 3;
@@ -45,24 +41,8 @@ const turns = ["Turn 1", "Turn 2", "Fall 1",
     "Turn 10", "Turn 11", "Spring 2",
 ]
 const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) => {
-
-    const [checkedList, setCheckedList] = React.useState(defaultCheckedList);
-    const [indeterminate, setIndeterminate] = React.useState(false);
-    const [checkAll, setCheckAll] = React.useState(false);
     const [BM,setBM] = useState("");
     const [time,setTime] = useState(60);
-
-    const onChange = list => {
-        setCheckedList(list);
-        setIndeterminate(!!list.length && list.length < plainOptions.length);
-        setCheckAll(list.length === plainOptions.length);
-    };
-
-    const onCheckAllChange = e => {
-        setCheckedList(e.target.checked ? plainOptions : []);
-        setIndeterminate(false);
-        setCheckAll(e.target.checked);
-    };
 
     return (
         <div style={{"margin":"5vh"}} className="dashboard--container">
@@ -115,24 +95,19 @@ const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) =
                 </div>
                 <div style={{"width":"60vh"}}>
                     <h2>브로드캐스트</h2>
-                    수신인
-                    <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
-                        Check all
-                    </Checkbox>
-                    <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />
-
-                    <label>메시지: </label><input value={BM} onChange={res=>setBM(res.target.value)} />
+                    <label>메시지: </label><input value={BM} onChange={res=>setBM(res.target.value)}/>
                     <Button onClick={()=>{
-                        console.log("DashB",checkedList)
-                        for (const checked in checkedList) {
-                            dataRef.child("class").child(checked).child("MESSAGE").push().set({
+                        for (let i=0;i<5;i++) {
+                            dataRef.child("class").child(i).child("MESSAGE").push().set({
                                 message: "Message from the head director",
                                 description: BM,
                                 life: Date.now()+3000
                             })
                         }
+                        setBM("")
                     }}>Send</Button>
                 </div>
+                <img style={{"height":"30vh"}} src={CHAR}/>
             </div>
         </div>
     );

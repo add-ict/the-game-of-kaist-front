@@ -76,18 +76,22 @@ const App = () => {
         return ()=>{mapDataRef.off()}
     },[]);
     useEffect(()=>{
-        console.log("JUMP hi!")
         setData(turnGroups?.[turnGroup])
+    },[turnGroup,turnGroups])
+    useEffect(()=>{
         let newPrev=turnGroups?.[data?.prev];
         if (state) {
             let iter=2;
             if (state.group!==8&&state.group%2===0) iter=3;
-            for (let i=0;i<iter-1;i++) newPrev = turnGroups?.[newPrev?.prev];
+            for (let i=0;i<iter-1;i++) {
+                //alert(newPrev?.turnGroup)
+                newPrev = turnGroups?.[newPrev?.prev];
+            }
         }
         console.log("NAME",data?.turnGroup,prev?.turnGroup)
         setPrev(newPrev)
         setDataRef(turnGroupsRef.child(turnGroup))
-    },[turnGroup,turnGroups,jumper])
+    },[data])
     return (
         <>
             <Switch>

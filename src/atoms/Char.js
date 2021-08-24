@@ -2,35 +2,38 @@ import React from "react";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
+import Img0 from "../assets/character/0.png"
+import Img1 from "../assets/character/1.png"
+import Img2 from "../assets/character/2.png"
+import Img3 from "../assets/character/3.png"
+import Img4 from "../assets/character/4.png"
+import Img5 from "../assets/character/5.png"
+
+const Img = [Img0,Img1,Img2,Img3,Img4,Img5]
+
 export const charList = {
     0: {
         "Name": ["넙죽이","Neobjuggi"],
-        "Img": "https://i.imgur.com/1fbViqP.png",
         "Description": ["KAIST의 표준","Standard of KAIST"]
     },
     1: {
         "Name": ["거위","Goose"],
-        "Img": "https://i.imgur.com/kM6WV4h.png",
         "Description": ["거위는 사람을 물어","Goose bites people."]
     },
     2: {
         "Name": ["고양이","Cat"],
-        "Img": "https://i.imgur.com/2WLwQe4.png",
         "Description": ["귀엽지만 안 씻음","Cute but dirty"]
     },
     3: {
         "Name": ["휴보","HUBO"],
-        "Img": "https://i.imgur.com/piPTej0.png",
-        "Description": ["감정은 어렵고 나는 똑똑해","Difficult emotion, smart me"]
+        "Description": ["감정은 어렵고 나는 똑똑해","Difficult emotion, smart\u00A0me"]
     },
     4: {
         "Name": ["OLEV","OLEV"],
-        "Img": "https://i.imgur.com/sJmIryp.png",
         "Description": ["애는 착해","It is good but..."]
     },
     5: {
         "Name": ["오리","Duck"],
-        "Img": "https://i.imgur.com/DS58asH.png",
         "Description": ["오리는 똑똑해","Duck on Dean’s list"]
     }
 }
@@ -39,8 +42,7 @@ const ToolTip = ({admin,onClick}) => {
     return (
         <div id="charSelect">
             {Array(6).fill(0).map((x, i) =>
-                <div key={i} style={{"backgroundImage": `url(${charList[i].Img})`}}
-                     onClick={()=>{onClick(i)}}></div>)}
+                <div><img key={i} src={Img[i]} onClick={()=>{onClick(i)}}/></div>)}
         </div>
     );
 }
@@ -55,10 +57,11 @@ const Char = ({admin,data,classID,dataRef,t}) => {
         <Tippy content={<ToolTip admin={admin} onClick={onClick}/>} interactive={true} placement="bottom" disabled={!admin}>
             <div id="charContainer">
                 <div>{charList[pChar]?.Name?.[t]}</div>
-                <img alt="character" src={charList[pChar]?.Img}/>
+                <img alt="character" src={Img[pChar]}/>
                 <div>{charList[pChar]?.Description?.[t]}</div>
             </div>
         </Tippy>
     );
 };
+
 export default Char;

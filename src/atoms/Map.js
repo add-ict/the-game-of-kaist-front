@@ -65,7 +65,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
         for (let i = 0; i < 40; i++)
             if (i!==20) tooltips.current[i].setContent(
                 //JSON.stringify(mapData?.[i])
-                (mapData?.[i]?.name?"<h1>"+mapData?.[i]?.name?.[t]+"</h1><br/>":"")+
+                (mapData?.[i]?.name?"<h1 style='color: white'>"+mapData?.[i]?.name?.[t]+"</h1><br/>":"")+
                 (who[i]?who[i]+"<br/>":"")+
                 "<span style='font-size:2vh;margin-left:auto'>"+(mapData?.[i]?.cause?mapData?.[i]?.cause?.[t]+"<br/>":"")+"</span>"+
                 "<div style='display:flex'>" +
@@ -77,7 +77,6 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
             );
             else tooltips.current[i].setContent(
                 //JSON.stringify(mapData?.[i])
-                (mapData?.[i]?.name?"<h1>"+mapData?.[i]?.name?.[t]+"</h1><br/>":"")+
                 (who[i]?who[i]+"<br/>":"")+
                 "<span style='font-size:2vh;margin-left:auto'>"+(mapData?.[i]?.cause?mapData?.[i]?.cause?.[t]+"<br/>":"")+"</span>"+
                 "<div style='margin:0.2vh;width:2vh;height:2vh;border-radius: 1vh;'>" +
