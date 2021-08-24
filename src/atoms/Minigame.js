@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import "./Minigame.scss"
 const selectTitle=[
-    ["실패"],
-    ["성공 1단계"],
-    ["성공 2단계"],
+    ["실패","Fail"],
+    ["성공 1단계","성공 1단계(TBT)"],
+    ["성공 2단계","성공 2단계(TBT)"],
 ]
 const Arrow = ({RGHB,positionData,idx}) => {
     const value = positionData?.value?.[idx]?.[RGHB];

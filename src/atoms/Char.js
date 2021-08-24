@@ -4,34 +4,34 @@ import 'tippy.js/dist/tippy.css';
 
 export const charList = {
     0: {
-        "Name": ["넙죽이",""],
+        "Name": ["넙죽이","Neobjuggi"],
         "Img": "https://i.imgur.com/1fbViqP.png",
-        "Description": ["KAIST의 표준",""]
+        "Description": ["KAIST의 표준","Standard of KAIST"]
     },
     1: {
-        "Name": ["거위",""],
+        "Name": ["거위","Goose"],
         "Img": "https://i.imgur.com/kM6WV4h.png",
-        "Description": ["거위는 사람을 물어",""]
+        "Description": ["거위는 사람을 물어","Goose bites people."]
     },
     2: {
-        "Name": ["고양이",""],
+        "Name": ["고양이","Cat"],
         "Img": "https://i.imgur.com/2WLwQe4.png",
-        "Description": ["귀엽지만 안 씻음",""]
+        "Description": ["귀엽지만 안 씻음","Cute but dirty"]
     },
     3: {
-        "Name": ["휴보",""],
+        "Name": ["휴보","HUBO"],
         "Img": "https://i.imgur.com/piPTej0.png",
-        "Description": ["감정은 어렵고 나는 똑똑해",""]
+        "Description": ["감정은 어렵고 나는 똑똑해","Difficult emotion, smart me"]
     },
     4: {
-        "Name": ["OLEV",""],
+        "Name": ["OLEV","OLEV"],
         "Img": "https://i.imgur.com/sJmIryp.png",
-        "Description": ["애는 착해",""]
+        "Description": ["애는 착해","It is good but..."]
     },
     5: {
-        "Name": ["오리",""],
+        "Name": ["오리","Duck"],
         "Img": "https://i.imgur.com/DS58asH.png",
-        "Description": ["오리는 똑똑해",""]
+        "Description": ["오리는 똑똑해","Duck on Dean’s list"]
     }
 }
 const ToolTip = ({admin,onClick}) => {

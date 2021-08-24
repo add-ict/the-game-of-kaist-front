@@ -1,6 +1,6 @@
 {
   "name": "the-game-of-kaist-front",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@firebase/app": "^0.6.29",
@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@tippyjs/react": "^4.2.5",
+    "antd": "^4.16.13",
     "firebase": "^8.9.1",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",

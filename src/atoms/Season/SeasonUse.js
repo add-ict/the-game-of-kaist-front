@@ -9,7 +9,7 @@ const SeasonUse = ({state,data,dataRef,admin,classID,t}) => {
         case 11:
             if (result===2) return <Season32 data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>
         case 2:
-            return <Season0x data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>
+            return <Season0x data={data} state={state} dataRef={dataRef} admin={admin} t={t} classID={classID}/>
         case 5:
         case 8:
             return <Season1x data={data} dataRef={dataRef} admin={admin} t={t} classID={classID}/>

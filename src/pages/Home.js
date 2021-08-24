@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {Button} from "antd";
 
 const Home = ({rootRef}) => {
     return (
@@ -15,13 +16,13 @@ const Home = ({rootRef}) => {
                 <div>
                     <h2>For Students</h2>
                     {Array(5).fill(0).map((x, i) => <div key={i}><Link to={"/app/" + i}>
-                        <button>Class #{i}</button>
+                        <Button>Class #{i}</Button>
                     </Link></div>)}
                 </div>
                 <div style={{"marginLeft": "10vh"}}>
                     <h2>Admin</h2>
                     {Array(5).fill(0).map((x, i) => <div key={i}><Link to={"/admin/" + i}>
-                        <button>Class #{i}</button>
+                        <Button>Class #{i}</Button>
                     </Link></div>)}
                 </div>
             </div>
