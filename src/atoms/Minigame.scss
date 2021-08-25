@@ -1,96 +1,56 @@
-.Minigame--container{
+.Minigame{
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &__title{
     width: 100%;
-    height: 20%;
-    overflow-y: scroll;
-  }
-  &__inner{
-    width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    padding: 2vh;
+    font-size: 2.5vh;
+    overflow-y: auto;
   }
   &__select{
-    width: 30%;
-    height: 95%;
-    background-color: #dddfc8;
-    border-radius: 2vh;
-    text-align: center;
-    &Title{
-      font-size: 4vh;
-      margin: 5vh;
-    }
-    &Value {
-      font-size: 6vh;
-      margin: 4vh;
-    }
-    &S{
-      width: 30%;
-      height: 95%;
-      border-radius: 2vh;
-      text-align: center;
-      background-color: #cad278;
-    }
-  }
-  &__innerAdmin{
+    flex: 1 0 20vh;
     width: 100%;
-    height: 70%;
     display: flex;
     justify-content: space-around;
-    align-items: center;
   }
-  &__selectAdmin{
+  &__card{
     width: 30%;
-    height: 95%;
+    margin: 1%;
     border-radius: 2vh;
-    text-align: center;
     background-color: #dddfc8;
     cursor: pointer;
-    &Title{
-      font-size: 4vh;
-      margin: 5vh;
-    }
-    &Value {
-      font-size: 6vh;
-      margin: 4vh;
-    }
+    text-align: center;
     &S{
-      width: 30%;
-      height: 95%;
-      border-radius: 2vh;
-      text-align: center;
       background-color: #cad278;
     }
-    &:active{
-      background-color: #949586;
+    & > span {
+      font-size: 3vh;
+      margin: 2vh;
     }
   }
-  &__cause{
-    font-size: 3vh;
-    margin: 2vh;
+  &__clickable:active{
+    background-color: #949586;
   }
-  &__desc{
+  &__selectTitle{
     font-size: 3vh;
-    margin: 2vh;
   }
   &__button{
-    cursor: pointer;
+    width: 15vh;
+    flex: 0 0 5vh;
+    margin: 2vh;
+    border-radius: 2vh;
+    background-color: #96ff00;
     text-align: center;
-    height: 10%;
-    &Inner{
-      background-color: #3dc947;
-      width: 20vh;
-      height: 90%;
-      border-radius: 1vh;
-      line-height: 230%;
-      font-size: 3vh;
-      margin: auto;
-      &:active{
-        background-color: #28822e;
-      }
+    line-height: 5vh;
+    font-size: 2.5vh;
+    box-shadow: 1px 1px 1px #5c5c5c;
+    cursor: pointer;
+    &:active{
+      background-color: #28822e;
+      box-shadow: none;
     }
   }
 }
@@ -108,4 +68,8 @@
 
 .B {
   color: #ef7c30;
+}
+
+.K {
+  color: #000000;
 }
