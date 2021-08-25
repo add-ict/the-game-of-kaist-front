@@ -22,12 +22,13 @@
   height: 100%;
   display: flex;
   font-size: 2vh;
-  line-height: 3vh;
+  line-height: 2.5vh;
 
   & > div {
     flex: 1;
-    text-align: center;
-    margin-left: 1.5vh;
+    display: flex;
+    //text-align: center;
+    margin-left: 0.5vh;
   }
 }
 
