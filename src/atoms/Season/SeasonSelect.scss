@@ -29,12 +29,15 @@
       width: 14vh;
       margin: 3vh;
       border-radius: 1vh;
+      flex: 0 0 14vh;
     }
     &Text{
       text-align: left;
+      overflow-y: auto;
     }
     &Title{
-      font-size: 4vh;
+      font-size: 2.5vh;
+      font-weight: bold;
       margin-bottom: 1vh;
     }
     &Desc {
@@ -80,7 +83,7 @@
     }
   }
   &__desc{
-    font-size: 3.5vh;
+    font-size: 3vh;
     margin: 3vh;
   }
   &__button{
