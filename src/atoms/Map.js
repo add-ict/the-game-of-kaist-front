@@ -68,7 +68,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
         const who = Array(40).fill("");
         for (let i = 0; i < 5; i++) {
             console.log(data)
-            who[data?.["class"]?.[i]?.map?.location] += (who[data?.["class"]?.[i]?.map?.location]?", ":"")+ data?.["class"]?.[i]?.name
+            who[data?.["class"]?.[i]?.map?.location] += (who[data?.["class"]?.[i]?.map?.location]?", ":"")+"Class "+data?.["class"]?.[i]?.name
         }
         for (let i = 0; i < 40; i++)
             if (i!==20) tooltips.current[i].setContent(
