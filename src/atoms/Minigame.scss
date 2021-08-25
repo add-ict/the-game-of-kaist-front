@@ -9,6 +9,10 @@
     padding: 2vh;
     font-size: 2.5vh;
     overflow-y: auto;
+    line-height: 200%;
+    & > b{
+      font-weight: bold;
+    }
   }
   &__select{
     flex: 1 0 20vh;
@@ -19,9 +23,10 @@
   &__card{
     width: 30%;
     margin: 1%;
+    padding: 2%;
     border-radius: 2vh;
+    line-height: 200%;
     background-color: #dddfc8;
-    cursor: pointer;
     text-align: center;
     &S{
       background-color: #cad278;
@@ -31,8 +36,11 @@
       margin: 2vh;
     }
   }
-  &__clickable:active{
-    background-color: #949586;
+  &__clickable {
+    cursor: pointer;
+    &:active {
+      background-color: #949586;
+    }
   }
   &__selectTitle{
     font-size: 3vh;
