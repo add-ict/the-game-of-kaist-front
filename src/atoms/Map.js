@@ -75,7 +75,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
         }
         for (let i = 0; i < 40; i++)
             if (i!==20) tooltips.current[i].setContent(
-                //JSON.stringify(mapData?.[i])
+                "<div style='font-family: Wemakeprice, sans-serif'>"+
                 (mapData?.[i]?.name?"<h1 style='color: white'>"+mapData?.[i]?.name?.[t]+"</h1><br/>":"")+
                 (who[i]?who[i]+"<br/>":"")+
                 "<span style='font-size:2vh;margin-left:auto'>"+(mapData?.[i]?.cause?mapData?.[i]?.cause?.[t]+"<br/>":"")+"</span>"+
@@ -84,6 +84,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
                 (mapData?.[i]?.affection?.G?"<div style='margin:0.2vh;width:2vh;height:2vh;border-radius: 1vh;background-color: #6bca3f'></div>":"")+
                 (mapData?.[i]?.affection?.H?"<div style='margin:0.2vh;width:2vh;height:2vh;border-radius: 1vh;background-color: #32b6cc'></div>":"")+
                 (mapData?.[i]?.affection?.B?"<div style='margin:0.2vh;width:2vh;height:2vh;border-radius: 1vh;background-color: #ef7c30'></div>":"")+
+                "</div>"+
                 "</div>"
             );
             else tooltips.current[i].setContent(
