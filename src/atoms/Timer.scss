@@ -1,0 +1,24 @@
+.timerContainer {
+  height: 10vh;
+  width: 13vh;
+  left: 3.4vh;
+  top: 23.5vh;
+
+  & * {
+    position: absolute;
+  }
+
+  & :nth-child(1) {
+    font-size: 2vh;
+    top: 1vh;
+    left: 0;
+  }
+
+  & :nth-child(2) {
+    font-size: 4vh;
+    width: 12vh;
+    text-align: center;
+    top: 4vh;
+    left: 0.34vh;
+  }
+}

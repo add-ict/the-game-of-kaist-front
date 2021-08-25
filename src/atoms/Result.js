@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from "react";
 import "./Result.scss"
-const Col = ({A,B}) => {
-    return <div><div>{B}</div>{A?.map((x,i)=><div>{i}반: {x}등</div>)}</div>
-}
 const toRank = (rank) => {
     const ret = []
     for (let i = 1; i <= 5; i++)
@@ -27,14 +24,20 @@ const Result = ({data,dataRef,admin,classID,t}) => {
                     {Array(3).fill(0).map((y,j)=>
                         <div className="result--container__column" style={{"left":(18+20*j)+"vh"}}>
                             {toRank(data?.ranking?.[RGH[j]]).map((x,i)=>
-                                <div className="result--container__cell">{x[0]}. #{x[1]} ({data?.["class"]?.[x[1]]?.["score"]?.[RGH[j]]?.value})</div>
+                                <div className="result--container__cell">{x[0]}.
+                                    <span style={{"marginLeft":"auto","fontSize":"1px"}}>#</span>
+                                    <span>{data?.["class"]?.[x[1]]?.name}</span>
+                                    ({data?.["class"]?.[x[1]]?.["score"]?.[RGH[j]]?.value})</div>
                             )}
                         </div>
                     )}
 
                     <div className="result--container__column" style={{"left":"78vh"}}>
                         {toRank(data?.RESULT?.allRanking).map((x,i)=>
-                            <div className="result--container__cell" style={{"color":"white"}}>{x[0]}. #{x[1]}</div>
+                            <div className="result--container__cell" style={{"color":"white"}}>{x[0]}.
+                                <span style={{"marginLeft":"auto","fontSize":"1px"}}>#</span>
+                                <span>{data?.["class"]?.[x[1]]?.name}</span>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -43,9 +46,3 @@ const Result = ({data,dataRef,admin,classID,t}) => {
     );
 }
 export default Result;
-
-/*
-<div style={{"display":"flex",justifyContent: "space-around"}}>
-                        {A.map((x,i)=><Col A={x} B={B[i]}/>)}
-                    </div>
-* */

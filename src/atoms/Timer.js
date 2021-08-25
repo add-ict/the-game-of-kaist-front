@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Timer.scss"
 
 const groupName = {
     [-1]:["일시정지", "PAUSED"],
@@ -15,7 +16,7 @@ const groupName = {
 
 const Timer = ({state,timer,t}) => {
     return (
-        <div id="timerContainer">
+        <div className="timerContainer">
             <div style={{"fontSize":"1vh"}}>{groupName?.[state?.group]?.[t]}</div>
             <div>{(100 + Math.floor(timer.time / 60)).toString().substring(1, 3)}:{(100 + timer.time % 60).toString().substring(1, 3)}</div>
         </div>
