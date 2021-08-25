@@ -17,8 +17,12 @@ const groupName = {
 const Timer = ({state,timer,t}) => {
     return (
         <div className="timerContainer">
-            <div style={{"fontSize":"1vh"}}>{groupName?.[state?.group]?.[t]}</div>
-            <div>{(100 + Math.floor(timer.time / 60)).toString().substring(1, 3)}:{(100 + timer.time % 60).toString().substring(1, 3)}</div>
+            <div className="timerContainer__title">
+                <div>
+                    {groupName?.[state?.group]?.[t]}
+                </div>
+            </div>
+            <div className="timerContainer__time">{(100 + Math.floor(timer.time / 60)).toString().substring(1, 3)}:{(100 + timer.time % 60).toString().substring(1, 3)}</div>
         </div>
     );
 };

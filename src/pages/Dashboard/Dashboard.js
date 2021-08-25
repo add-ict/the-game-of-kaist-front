@@ -77,7 +77,7 @@ const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) =
                     <h2>선택 완료</h2>
                     <div style={{"display": "flex"}}>
                         {Array(5).fill(0).map((x, i) => <div
-                            className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]]) ? "upsON" : "upsOFF"}>{i}</div>)}
+                            className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]]) ? "upsON" : "upsOFF"}>{27+i}</div>)}
                     </div>
                 </div>
             </div>

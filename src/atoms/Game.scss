@@ -27,7 +27,7 @@
 #turnsContainer {
   left: 2.7vh;
   top: 41vh;
-
+  font-family: Wemakeprice,'Nanum Gothic', sans-serif;
   & .turnBlock {
     width: 12vh;
     height: 2.8vh;
@@ -37,7 +37,7 @@
     text-align: center;
     background-color: #adadad;
     font-size: 1.6vh;
-    line-height: 2.8vh;
+    line-height: 3.2vh;
   }
 
   & .turnBlock-on {
@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  font-family: Wemakeprice,'Nanum Gothic', sans-serif;
 }
 
 #score_barContainer {
@@ -113,7 +114,7 @@
   }
 }
 
-#charContainer {
+.charContainer {
   left: 22vh;
   top: 24.5vh;
   width: 20vh;
@@ -123,16 +124,28 @@
   align-items: center;
   justify-content: space-between;
   font-size: 1.5vh;
-
+  font-family: Wemakeprice,'Nanum Gothic', sans-serif;
   & > div {
     width: 18vh;
-    //height: 2.5vh;
     text-align: center;
+    padding: 2px;
   }
-
+  & > div {
+    width: 18vh;
+    text-align: center;
+    //background-color: red;
+  }
+  &__name {
+    flex: 0 0 2.7vh;
+    font-size: 1.7vh;
+  }
   & > img {
+    flex: 1 1 4vh;
     max-width: 19vh;
     max-height: 13vh;
+  }
+  &__desc {
+    flex: 0 0 5vh;
   }
 }
 
@@ -154,7 +167,7 @@
     border-radius: 0.5vh;
     margin: 3px;
     box-shadow: 2px 2px 2px #1d1212;
-    line-height: 4vh;
+    line-height: 4.5vh;
     text-align: center;
     font-size: 3vh;
   }

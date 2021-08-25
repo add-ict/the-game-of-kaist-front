@@ -22,7 +22,7 @@ const Circle = ({clickable,id,xyc,dataRef,data,classID,fillbg,admin}) => {
         <g className="circles" id={'map-circle-g_' + id} key={'ckmap-circle-g_' + id} onClick={data?.["class"]?.[classID]?.map?.canGo?.[id]&&admin?onClick:null}>
             <circle id={'map-circle_' + id} key={'ckmap-circle_' + id} cx={xyc[0]} cy={xyc[1]} r="26.55993"
                     fill={fill}></circle>
-            <text id={'map-circle-text_' + id} key={'ckmap-circle-text_' + id} fontSize={25} x={xyc[0]} y={xyc[1]} textAnchor={"middle"} dy={8}>{id}</text>
+            <text className="wmp" id={'map-circle-text_' + id} key={'ckmap-circle-text_' + id} fontSize={25} x={xyc[0]} y={xyc[1]} textAnchor={"middle"} dy={8}>{id}</text>
         </g>
     ];
 

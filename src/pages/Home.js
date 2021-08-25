@@ -18,13 +18,13 @@ const Home = ({rootRef}) => {
                 <div>
                     <h2>For Students</h2>
                     {Array(5).fill(0).map((x, i) => <div key={i}><Link to={"/app/" + i}>
-                        <Button>Class #{i}</Button>
+                        <Button>Class #{i+27}</Button>
                     </Link></div>)}
                 </div>
                 <div style={{"marginLeft": "10vh"}}>
                     <h2>Admin</h2>
                     {Array(5).fill(0).map((x, i) => <div key={i}><Link to={"/admin/" + i}>
-                        <Button>Class #{i}</Button>
+                        <Button>Class #{i+27}</Button>
                     </Link></div>)}
                 </div>
             </div>
