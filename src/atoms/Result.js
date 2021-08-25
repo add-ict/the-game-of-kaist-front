@@ -25,7 +25,7 @@ const Result = ({data,dataRef,admin,classID,t}) => {
                         <div className="result--container__column" style={{"left":(18+20*j)+"vh"}}>
                             {toRank(data?.ranking?.[RGH[j]]).map((x,i)=>
                                 <div className="result--container__cell">{x[0]}.
-                                    <span style={{"marginLeft":"auto","fontSize":"1px","lineHeight":"2.8vh"}}>#</span>
+                                    <span style={{"marginLeft":"auto","fontSize":"1px"}}>#</span>
                                     <span>{data?.["class"]?.[x[1]]?.name}</span>
                                     ({data?.["class"]?.[x[1]]?.["score"]?.[RGH[j]]?.value})</div>
                             )}
@@ -35,7 +35,7 @@ const Result = ({data,dataRef,admin,classID,t}) => {
                     <div className="result--container__column" style={{"left":"78vh"}}>
                         {toRank(data?.RESULT?.allRanking).map((x,i)=>
                             <div className="result--container__cell" style={{"color":"white"}}>{x[0]}.
-                                <span style={{"marginLeft":"auto","fontSize":"1px","lineHeight":"2.8vh"}}>#</span>
+                                <span style={{"marginLeft":"auto","fontSize":"1px"}}>#</span>
                                 <span>{data?.["class"]?.[x[1]]?.name}</span>
                             </div>
                         )}
