@@ -3,10 +3,12 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import './Map.scss'
 
-const Circle = ({id,xyc,dataRef,data,classID,fillbg,admin}) => {
+const Circle = ({clickable,id,xyc,dataRef,data,classID,fillbg,admin}) => {
     const onClick = () => {
-        console.log('clicked',id)
-        dataRef.child('class').child(classID).child('upstream').update({MOVEMENT:{position:id}})
+        if(clickable) {
+            console.log('clicked', id)
+            dataRef.child('class').child(classID).child('upstream').update({MOVEMENT: {position: id}})
+        }
     }
     const fill=(id==data?.["class"]?.[classID]?.map?.location?"#0a96c2":
             (id==data?.["class"]?.[classID]?.upstream?.MOVEMENT?.position?"#00ffe1":
@@ -120,7 +122,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
             {circles.map((x, i) => {
                 const y = x.split(' ');
                 return (
-                    <Circle id={`${i}`} key={`ck${i}`} data={data} admin={admin} dataRef={dataRef} xyc={y} mapData={mapData} classID={classID} fillbg={whos[i]?"#b77bfe":"#fff"}/>
+                    <Circle clickable={state?.group===1&&(state?.state===2||state?.state===3)} id={`${i}`} key={`ck${i}`} data={data} admin={admin} dataRef={dataRef} xyc={y} mapData={mapData} classID={classID} fillbg={whos[i]?"#b77bfe":"#fff"}/>
                 );
             })}
             {polygons.map((x, i) => <polygon id={`p${i}`} key={`p${i}`} points={x}/>)}
