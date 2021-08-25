@@ -62,6 +62,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
         for (let i = 0; i < 40; i++)
             tooltips.current.push(tippy('#map-circle-g_' + i, {
                 allowHTML: true,
+                zIndex:1001,
             })[0]);
     }, []);
     useEffect(() => {

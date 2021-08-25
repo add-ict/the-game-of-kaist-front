@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from "react";
 import "./Result.scss"
-const Col = ({A,B}) => {
-    return <div><div>{B}</div>{A?.map((x,i)=><div>{i}반: {x}등</div>)}</div>
-}
 const toRank = (rank) => {
     const ret = []
     for (let i = 1; i <= 5; i++)
@@ -43,9 +40,3 @@ const Result = ({data,dataRef,admin,classID,t}) => {
     );
 }
 export default Result;
-
-/*
-<div style={{"display":"flex",justifyContent: "space-around"}}>
-                        {A.map((x,i)=><Col A={x} B={B[i]}/>)}
-                    </div>
-* */

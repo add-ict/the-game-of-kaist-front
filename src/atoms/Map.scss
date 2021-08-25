@@ -9,14 +9,11 @@
 }
 
 #mapContainer {
-  position: fixed;
+  position: absolute;
   width: calc(100vw - 80vh);
   max-height: 80vh;
-  right: 2vh;
   top: 50%;
-  transform: translate(0, -50%);
-}
-
-.mapTooltipTitle {
-  color: white;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 }

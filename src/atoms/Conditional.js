@@ -46,19 +46,19 @@ const Conditional = ({mapData,state,dataRef,data,classID,admin,t}) => {
     if (state?.turn!==12&&(state?.group===0 || state?.group===1 || !(state?.state===2 || state?.state===3))) return <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin} t={t}/>;
     else {
         return (
-            <div className="Conditional--contianer">
-
+            <>
                 {showMap ?
                     <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin}
                          t={t}/> :
-                    <div className="Conditional--contianer__inner">
-                        {Component}
+                    <div className="Conditional">
+                        <div className="Conditional__inner">
+                            {Component}
+                        </div>
                     </div>
                 }
-                <div className="Conditional--contianer__footer">
-                    <img src={mapIcon} alt={"show map"} onClick={()=>{setShowMap(prev=>!prev)}}/>
-                </div>
-            </div>
+                <img className="Conditional__Button" src={mapIcon} alt={"button show map"} onClick={()=>{setShowMap(prev=>!prev)}}/>
+            </>
+
         );
     };
 };
