@@ -46,6 +46,11 @@
   &__selectTitle{
     font-size: 3vh;
   }
+  &__selectFlex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   &__button{
     width: 15vh;
     flex: 0 0 5vh;

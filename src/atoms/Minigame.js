@@ -8,8 +8,8 @@ const selectTitle=[
 const Arrow = ({RGHB,positionData,idx}) => {
     const value = positionData?.value?.[idx]?.[RGHB];
     if (!value) return null
-    if (value > 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"randomly")+" ↑ "+value}</span>
-    else if (value < 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"randomly")+" ↓ "+(-value)}</span>
+    if (value > 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"randomly")+"\u00A0↑\u00A0"+value}</span>
+    else if (value < 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"randomly")+"\u00A0↓\u00A0"+(-value)}</span>
 }
 const Minigame = ({mapData,data,dataRef,admin,classID,t}) => {
     const location = data?.["class"]?.[classID]?.map?.location;
@@ -31,7 +31,7 @@ const Minigame = ({mapData,data,dataRef,admin,classID,t}) => {
                     }
                 >
                     <div className="Minigame__selectTitle"> {selectTitle[j][t]}</div>
-                    {["R","G","H","B","K"].map((x,i)=><Arrow RGHB={x} positionData={mapData?.[location]} idx={j}/>)}
+                    <div className="Minigame__selectFlex">{["R","G","H","B","K"].map((x,i)=><Arrow RGHB={x} positionData={mapData?.[location]} idx={j}/>)}</div>
                 </div>)}
             </div>
             {admin&&!result?<div className="Minigame__button" onClick={()=>{
