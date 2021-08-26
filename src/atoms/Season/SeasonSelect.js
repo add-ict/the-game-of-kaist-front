@@ -47,7 +47,7 @@ const SeasonSelect = ({data,dataRef,admin,classID,state,t}) => {
                         onClick={()=>{setS(j)}}
                     >
 
-                            <img className="SeasonSelect--container__selectImg" src={IMG[state.turn][j]}/>
+                            <img className="SeasonSelect--container__selectImg" src={IMG?.[state?.turn]?.[j]}/>
                             <div className="SeasonSelect--container__selectText">
                                 <div className="SeasonSelect--container__selectTitle">{downstream?.desc?.[j]?.[t]?.split("\n")?.[0]}</div>
                                 <div className="SeasonSelect--container__selectDesc">{downstream?.desc?.[j]?.[t]?.split("\n")?.[1]}</div>
@@ -79,7 +79,7 @@ const SeasonSelect = ({data,dataRef,admin,classID,state,t}) => {
                         <div
                             className={"SeasonSelect--container__select"+(result?.result===j?"S":"")}
                         >
-                            <img className="SeasonSelect--container__selectImg" src={IMG[state.turn][j]}/>
+                            <img className="SeasonSelect--container__selectImg" src={IMG?.[state?.turn]?.[j]}/>
                             <div className="SeasonSelect--container__selectText">
                                 <div className="SeasonSelect--container__selectTitle">{downstream?.desc?.[j]?.[t]?.split("\n")?.[0]}</div>
                                 <div className="SeasonSelect--container__selectDesc">{downstream?.desc?.[j]?.[t]?.split("\n")?.[1]}</div>
