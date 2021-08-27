@@ -1,108 +1,76 @@
-.LastSelect--container{
+.LastSelect{
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: Wemakeprice,'Nanum Gothic', sans-serif;
   &__title{
     width: 100%;
-    height: 20%;
-    text-align: center;
-    font-size: 4vh;
-    padding: 3vh;
-    overflow-y: scroll;
-  }
-  &__inner{
-    width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    padding: 2vh;
+    font-size: 2.5vh;
+    overflow-y: auto;
+    line-height: 200%;
+    & > b{
+      font-weight: bold;
+    }
   }
   &__select{
-    width: 30%;
-    height: 95%;
-    background-color: #dddfc8;
-    border-radius: 2vh;
-    text-align: center;
-    &Title{
-      font-size: 4vh;
-      margin: 5vh;
-    }
-    &Value {
-      font-size: 6vh;
-      margin: 4vh;
-    }
-    &S{
-      width: 30%;
-      height: 95%;
-      border-radius: 2vh;
-      text-align: center;
-      background-color: #cbde00;
-    }
-  }
-  &__innerAdmin{
-    width: 100%;
-    height: 70%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
+    flex: 1 0 20vh;
+    width: 100%;
   }
-  &__selectAdmin{
-    width: 30%;
-    height: 95%;
+  &__card{
+    width: 95%;
+    height: 30%;
+    margin: 1vh;
+    padding: 1vh;
     border-radius: 2vh;
-    text-align: center;
+    line-height: 200%;
     background-color: #dddfc8;
-    cursor: pointer;
-    &Title{
-      font-size: 3vh;
-      padding: 4vh;
-    }
-    &Value {
-      font-size: 6vh;
-      margin: 4vh;
-    }
+    display: flex;
+    align-items: center;
     &S{
-      width: 30%;
-      height: 95%;
-      border-radius: 2vh;
-      text-align: center;
       background-color: #cad278;
     }
-    &:active{
-      background-color: #949586;
-    }
-  }
-
-  &__button{
-    cursor: pointer;
-    text-align: center;
-    height: 10%;
-    &Inner{
-      background-color: #3dc947;
-      width: 20vh;
-      height: 90%;
-      border-radius: 1vh;
-      line-height: 230%;
+    & > span {
       font-size: 3vh;
-      margin: auto;
-      &:active{
-        background-color: #28822e;
+      margin: 2vh;
+    }
+    &-text{
+      flex: 1 0 auto;
+      margin-left: 1vh;
+      text-align: center;
+      font-size: 5vh;
+      padding: 1vh;
+      & b{
+        font-weight: bold;
+        font-size: 2.5vh;
       }
     }
   }
-}
-.R {
-  color: #dd32a9;
-}
-
-.G {
-  color: #6bca3f;
-}
-
-.H {
-  color: #32b6cc;
-}
-
-.B {
-  color: #ef7c30;
+  &__clickable {
+    cursor: pointer;
+    &:active {
+      background-color: #949586;
+    }
+  }
+  &__button{
+    width: 15vh;
+    flex: 0 0 5vh;
+    margin: 2vh;
+    border-radius: 2vh;
+    background-color: #96ff00;
+    text-align: center;
+    line-height: 5vh;
+    font-size: 2.5vh;
+    box-shadow: 1px 1px 1px #5c5c5c;
+    cursor: pointer;
+    &:active{
+      background-color: #28822e;
+      box-shadow: none;
+    }
+  }
 }
