@@ -7,7 +7,7 @@ const Season32 = ({data,dataRef,admin,classID,t}) => {
     const [s,setS] = useState(-1);
     if(admin&&!result)
         return (
-            <div className="Season">
+            <div className="Season wmp">
                 <div className="Season__title">
                     <div className="Season__desc">
                         {downstream?.title?.[t]?.split("\n")?
@@ -53,7 +53,7 @@ const Season32 = ({data,dataRef,admin,classID,t}) => {
         );
     else
         return (
-            <div className="Season">
+            <div className="Season wmp">
                 <div className="Season__title">
                     <div className="Season__desc">
                         {downstream?.title?.[t]?.split("\n")?

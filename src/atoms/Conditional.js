@@ -50,7 +50,7 @@ const Conditional = ({mapData,state,dataRef,data,classID,admin,t}) => {
                 {showMap ?
                     <Map state={state} mapData={mapData} dataRef={dataRef} data={data} classID={classID} admin={admin}
                          t={t}/> :
-                    <div className="Conditional">
+                    <div className="Conditional wmp">
                         <div className="Conditional__inner">
                             {Component}
                         </div>

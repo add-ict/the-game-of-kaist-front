@@ -9,8 +9,6 @@ const Home = ({rootRef}) => {
             <br/>
             <h1>Home</h1>
             <br/>
-            <h2 style={{"color":"red"}}>Disclaimer: 디자인 작업 중!</h2>
-            <br/>
             <label>login: </label>
             <input />
             <br/>
