@@ -23,6 +23,8 @@
       margin: 1vh;
       font-size: 3vh;
       display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-around;
     }
   }
@@ -50,11 +52,6 @@
   }
   &__selectTitle{
     font-size: 3vh;
-  }
-  &__selectFlex{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
   }
   &__button{
     width: 15vh;
