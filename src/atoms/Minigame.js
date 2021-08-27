@@ -8,8 +8,8 @@ const selectTitle=[
 const Arrow = ({RGHB,positionData,idx}) => {
     const value = positionData?.value?.[idx]?.[RGHB];
     if (!value) return null
-    if (value > 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"randomly")+"\u00A0↑\u00A0"+value}</span>
-    else if (value < 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"randomly")+"\u00A0↓\u00A0"+(-value)}</span>
+    if (value > 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"?")+"\u00A0↑\u00A0"+value}</span>
+    else if (value < 0) return <span className={RGHB}>{(RGHB!=="K"?RGHB:"?")+"\u00A0↓\u00A0"+(-value)}</span>
 }
 const Minigame = ({mapData,data,dataRef,admin,classID,t}) => {
     const location = data?.["class"]?.[classID]?.map?.location;

@@ -1,6 +1,7 @@
 .LastSelect--container{
   width: 100%;
   height: 100%;
+  font-family: Wemakeprice,'Nanum Gothic', sans-serif;
   &__title{
     width: 100%;
     height: 20%;
@@ -53,8 +54,8 @@
     background-color: #dddfc8;
     cursor: pointer;
     &Title{
-      font-size: 4vh;
-      margin: 5vh;
+      font-size: 3vh;
+      padding: 4vh;
     }
     &Value {
       font-size: 6vh;

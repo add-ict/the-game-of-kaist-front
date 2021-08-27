@@ -16,7 +16,7 @@ const LastSelect = ({data,dataRef,admin,classID,t}) => {
                         className={"LastSelect--container__selectAdmin"+(s===j?"S":"")}
                         onClick={()=>{setS(j)}}
                     >
-                        <div className="LastSelect--container__selectTitle">{downstream?.desc?.[j]}</div>
+                        <div className="LastSelect--container__selectTitle">{downstream?.desc?.[j]?.[t]}</div>
                     </div>)}
                 </div>
                 <div className="LastSelect--container__button">
@@ -38,7 +38,7 @@ const LastSelect = ({data,dataRef,admin,classID,t}) => {
                     {Array(3).fill(0).map((y,j)=><div
                         className={"LastSelect--container__select"+(result?.result===j?"S":"")}
                     >
-                        <div className="LastSelect--container__selectTitle">{downstream?.desc?.[j]}</div>
+                        <div className="LastSelect--container__selectTitle">{downstream?.desc?.[j]?.[t]}</div>
                     </div>)}
                 </div>
                 {admin?<div className="LastSelect--container__button">
