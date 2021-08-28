@@ -16,7 +16,7 @@ const Turns = ({state}) => {
     },[])
     return (
         <div id="turnsContainer">
-            {turns.map((x, i) => <div key={i} className={"turnBlock" + (((turn > i)||((turn==i)&&blink)) ? " turnBlock-on" : "")}>{x}</div>)}
+            {turns.map((x, i) => <div key={i} className={"turnBlock" + (((turn > i)||((turn==i)&&blink&&(state?.group!==0))) ? " turnBlock-on" : "")}>{x}</div>)}
         </div>
     );
 };

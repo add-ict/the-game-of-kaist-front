@@ -55,10 +55,10 @@ const Char = ({admin,data,classID,dataRef,t}) => {
 
     return (
         <Tippy content={<ToolTip admin={admin} onClick={onClick}/>} interactive={true} placement="bottom" disabled={!admin}>
-            <div id="charContainer">
-                <div>{charList[pChar]?.Name?.[t]}</div>
+            <div className="charContainer">
+                <div className="charContainer__name">{charList[pChar]?.Name?.[t]}</div>
                 <img alt="character" src={Img[pChar]}/>
-                <div>{charList[pChar]?.Description?.[t]}</div>
+                <div className="charContainer__desc">{charList[pChar]?.Description?.[t]}</div>
             </div>
         </Tippy>
     );

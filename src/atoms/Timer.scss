@@ -1,24 +1,33 @@
 .timerContainer {
   height: 10vh;
-  width: 13vh;
-  left: 3.4vh;
+  width: 13.5vh;
+  left: 3vh;
   top: 23.5vh;
-
+  font-family: Wemakeprice,'Nanum Gothic', sans-serif;
+  //background-color: red;
+  font
   & * {
     position: absolute;
   }
 
-  & :nth-child(1) {
-    font-size: 2vh;
-    top: 1vh;
-    left: 0;
+  &__title {
+    width: 13.5vh;
+    height: 3.2vh;
+    font-size: 1vh;
+    //background-color: red;
+    display: flex;
+    flex-direction: column;
+    & > div {
+      margin-top: auto;
+      text-align: center;
+      padding: 2px;
+    }
   }
 
-  & :nth-child(2) {
+  &__time {
     font-size: 4vh;
-    width: 12vh;
+    width: 13.5vh;
+    margin-top: 1vh;
     text-align: center;
-    top: 4vh;
-    left: 0.34vh;
   }
 }

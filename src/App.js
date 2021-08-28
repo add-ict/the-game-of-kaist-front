@@ -16,7 +16,7 @@ const scoreChange = {
     7: true
 }
 
-const rootRef = getDB("/");
+const rootRef = getDB("/60Nj29y1Gd");
 const ckptRef = rootRef.child("CKPT");
 const reloadRef = rootRef.child("RELOAD");
 const timerRef = rootRef.child("timer");

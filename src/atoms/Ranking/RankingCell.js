@@ -10,7 +10,7 @@ const RankingCell = ({row, col, R ,data, prev,classID}) => {
     const d = data?.["class"]?.[R?.[col]?.[row]?.[1]]?.["score"]?.[RGHB?.[col]]?.value
     //const p = prev?.["class"]?.[R?.[col]?.[row]?.[1]]?.["score"]?.[RGHB?.[col]]?.value
     return (
-        <Tippy content={<div>{d}</div>}>
+        <Tippy content={<div className="wmp">{d}</div>}>
             <div id="rankingCellContainer" style={(classID==R?.[col]?.[row]?.[1]?{"backgroundColor":"yellow"}:null)}>
                 <div>
                     <span style={{"marginLeft":"0"}}>{circle[R?.[col]?.[row]?.[0]-1]}</span>

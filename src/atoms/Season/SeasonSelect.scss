@@ -1,117 +1,75 @@
-.SeasonSelect--container{
+.SeasonSelect{
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Wemakeprice,'Nanum Gothic', sans-serif;
   &__title{
     width: 100%;
-    height: 20%;
-    text-align: center;
+    padding: 2vh;
+    font-size: 2.5vh;
     overflow-y: auto;
-  }
-  &__inner{
-    width: 100%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    line-height: 200%;
+    & > b{
+      font-weight: bold;
+    }
   }
   &__select{
-    width: 95%;
-    height: 30%;
-    border-radius: 2vh;
-    text-align: center;
-    background-color: #dddfc8;
-    display: flex;
-    align-items: center;
-    &Img {
-      //background-color: red;
-      height: 14vh;
-      width: 14vh;
-      margin: 3vh;
-      border-radius: 1vh;
-    }
-    &Text{
-      text-align: left;
-    }
-    &Title{
-      font-size: 4vh;
-      margin-bottom: 1vh;
-    }
-    &Desc {
-      font-size: 2.5vh;
-    }
-    &S{
-      width: 95%;
-      height: 30%;
-      border-radius: 2vh;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      background-color: #cbde00;
-    }
-  }
-  &__innerAdmin{
-    width: 100%;
-    height: 70%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
+    flex: 1 0 20vh;
+    width: 100%;
   }
-  &__selectAdmin{
+  &__card{
     width: 95%;
     height: 30%;
+    margin: 1vh;
+    padding: 1vh;
     border-radius: 2vh;
-    text-align: center;
+    line-height: 200%;
     background-color: #dddfc8;
     display: flex;
     align-items: center;
     &S{
-      width: 95%;
-      height: 30%;
-      border-radius: 2vh;
-      text-align: center;
-      display: flex;
-      align-items: center;
       background-color: #cad278;
     }
-    &:active{
-      background-color: #949586;
-    }
-  }
-  &__desc{
-    font-size: 3.5vh;
-    margin: 3vh;
-  }
-  &__button{
-    text-align: center;
-    height: 10%;
-    &Inner{
-      background-color: #3dc947;
-      width: 20vh;
-      height: 90%;
-      border-radius: 1vh;
-      line-height: 230%;
-      font-size: 3vh;
-      margin: auto;
-      &:active{
-        background-color: #28822e;
+    &-text{
+      flex: 1 0 auto;
+      margin-left: 1vh;
+      font-size: 1.5vh;
+      & b{
+        font-weight: bold;
+        font-size: 2vh;
       }
     }
   }
-}
-.R {
-  color: #dd32a9;
-}
-
-.G {
-  color: #6bca3f;
-}
-
-.H {
-  color: #32b6cc;
-}
-
-.B {
-  color: #ef7c30;
+  &__Img{
+    height: 100%;
+    border-radius: 1vh;
+    object-fit: contain;
+  }
+  &__clickable {
+    cursor: pointer;
+    &:active {
+      background-color: #949586;
+    }
+  }
+  &__button{
+    width: 15vh;
+    flex: 0 0 5vh;
+    margin: 2vh;
+    border-radius: 2vh;
+    background-color: #96ff00;
+    text-align: center;
+    line-height: 5vh;
+    font-size: 2.5vh;
+    box-shadow: 1px 1px 1px #5c5c5c;
+    cursor: pointer;
+    &:active{
+      background-color: #28822e;
+      box-shadow: none;
+    }
+  }
 }

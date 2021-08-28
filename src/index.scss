@@ -1,12 +1,27 @@
 @import "reset.scss";
+@font-face {
+  font-family: 'Wemakeprice';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Wemakeprice';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 * {
   overflow: hidden;
   box-sizing: border-box;
   user-select: none;
-  font-family: 'Nanum Gothic', sans-serif !important;
 }
-
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  //font-family: Wemakeprice,'Nanum Gothic', sans-serif;
+}
 header {
   position: fixed;
 }
@@ -29,3 +44,4 @@ header {
 #homeMain {
   display: flex;
 }
+.wmp{font-family: Wemakeprice,'Nanum Gothic', sans-serif;}

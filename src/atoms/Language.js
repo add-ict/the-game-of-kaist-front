@@ -1,5 +1,5 @@
 const Language = ({t,setT})=>{
-    return <div className="language-change">
+    return <div className="language-change wmp">
         <div onClick={()=>{
             setT(prev=>(1-prev))
         }}

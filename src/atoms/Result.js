@@ -15,7 +15,7 @@ const Result = ({data,dataRef,admin,classID,t}) => {
     return (
         <div>
             <div id="gameContainer">
-                <div className="result--container">
+                <div className="result--container wmp">
                     <div className="result--container__column" style={{"left":"4vh"}}>
                         {Array(5).fill(0).map((x,i)=>
                             <div className="result--container__cell">{(5-i)*20} pt</div>

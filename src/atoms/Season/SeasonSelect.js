@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useRef, useState} from "react";
 import "./SeasonSelect.scss"
 
 import IMG0 from "../../assets/season/1.jpg";
@@ -22,74 +22,55 @@ const IMG={
     8: [IMG6,IMG7,IMG8],
     11: [IMG9,IMG10,IMG11],
 }
+const screams=[
+    [0,1,2],
+    [0,2,1],
+    [1,0,2],
+    [1,2,0],
+    [2,1,0],
+    [2,0,1],
+]
 const SeasonSelect = ({data,dataRef,admin,classID,state,t}) => {
     const result = data?.["class"]?.[classID]?.upstream?.SEASON_SELECT;
     const downstream = data?.["class"]?.[classID]?.downstream?.SEASON_SELECT;
     const [s,setS] = useState(-1);
-    if (admin&&!result)
-        return (
-            <div className="SeasonSelect--container">
-                <div className="SeasonSelect--container__title">
-                    <div className="SeasonSelect--container__desc">
-                        {downstream?.title?.[t]?.split("\n")?
-                            downstream?.title?.[t]?.split("\n")?.map((x,i)=>{
-                                    if (i==0) return <span>{x}</span>
+    const scream = useRef(Math.floor(Math.random()*6));
+    return (
+        <div className="SeasonSelect">
+            <div className="SeasonSelect__title">
+                {downstream?.title?.[t]?
+                    downstream?.title?.[t]?.split("\n")?.map((x,i)=>{
+                            if (i==0) return <span><b>{x}</b></span>
+                            return <span><br/>{x}</span>
+                        }
+                    )
+                    :null}
+            </div>
+            <div className="SeasonSelect__select">
+                {screams[scream.current].map((j,y)=><div
+                    className={"SeasonSelect__card"+
+                    ((admin&&!result?s===j:result?.result===j)?" SeasonSelect__cardS":"")+
+                    (admin&&!result?" SeasonSelect__clickable":"")}
+                    onClick={
+                        (admin&&!result?(()=>{setS(j)}):null)
+                    }
+                >
+                    <img className="SeasonSelect__Img" src={IMG?.[state?.turn]?.[j]}/>
+                    <div className="SeasonSelect__card-text">
+                        {downstream?.desc?.[j]?.[t]?
+                            downstream?.desc?.[j]?.[t]?.split("\n")?.map((x,i)=>{
+                                    if (i==0) return <span><b>{x}</b></span>
                                     return <span><br/>{x}</span>
                                 }
                             )
                             :null}
                     </div>
-                </div>
-                <div className={"SeasonSelect--container__innerAdmin"}>
-                    {Array(3).fill(0)?.map((y,j)=>(
-                        <div
-                        className={"SeasonSelect--container__selectAdmin"+(s===j?"S":"")}
-                        onClick={()=>{setS(j)}}
-                    >
-
-                            <img className="SeasonSelect--container__selectImg" src={IMG[state.turn][j]}/>
-                            <div className="SeasonSelect--container__selectText">
-                                <div className="SeasonSelect--container__selectTitle">{downstream?.desc?.[j]?.[t]?.split("\n")?.[0]}</div>
-                                <div className="SeasonSelect--container__selectDesc">{downstream?.desc?.[j]?.[t]?.split("\n")?.[1]}</div>
-                                <div className="SeasonSelect--container__selectDesc">{downstream?.desc?.[j]?.[t]?.split("\n")?.[2]}</div>
-                            </div>
-                    </div>)
-                    )}
-                </div>
-                <div className="SeasonSelect--container__button">
-                    <div className="SeasonSelect--container__buttonInner"
-                         onClick={()=>{
-                             if(s!==-1) dataRef.child("class").child(classID).child("upstream/SEASON_SELECT").update({result: s});
-                         }}
-                    >Submit</div>
-                </div>
+                </div>)}
             </div>
-        );
-    else
-        return (
-            <div className="SeasonSelect--container">
-                <div className="SeasonSelect--container__title">
-                    <div className="SeasonSelect--container__desc">
-                        {downstream?.title?.[t]?.split("\n")?.[0]}<br/><br/>
-                        {downstream?.title?.[t]?.split("\n")?.[1]}
-                    </div>
-                </div>
-                <div className={"SeasonSelect--container__inner"}>
-                    {Array(3).fill(0)?.map((y,j)=>(
-                        <div
-                            className={"SeasonSelect--container__select"+(result?.result===j?"S":"")}
-                        >
-                            <img className="SeasonSelect--container__selectImg" src={IMG[state.turn][j]}/>
-                            <div className="SeasonSelect--container__selectText">
-                                <div className="SeasonSelect--container__selectTitle">{downstream?.desc?.[j]?.[t]?.split("\n")?.[0]}</div>
-                                <div className="SeasonSelect--container__selectDesc">{downstream?.desc?.[j]?.[t]?.split("\n")?.[1]}</div>
-                                <div className="SeasonSelect--container__selectDesc">{downstream?.desc?.[j]?.[t]?.split("\n")?.[2]}</div>
-                            </div>
-                        </div>)
-                    )}
-                </div>
-            </div>
-        );
-
+            {admin&&!result?<div className="SeasonSelect__button" onClick={()=>{
+                if(s!==-1) dataRef.child("class").child(classID).child("upstream/SEASON_SELECT").update({result: s});
+            }}>Submit</div>:null}
+        </div>
+    );
 }
 export default SeasonSelect;

@@ -52,7 +52,7 @@ const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) =
                     Home
                 </Button>
             </Link>
-            <div style={{"display":"flex"}}>
+            <div style={{"display":"flex","flexWrap":"wrap"}}>
                 <div>
                     <h2>현재 상태</h2>
                     <div>{turns?.[state?.turn]}</div>
@@ -77,11 +77,9 @@ const Dashboard = ({data,dataRef,state,CKPT,ckptRef,timerRef,timer,reloadRef}) =
                     <h2>선택 완료</h2>
                     <div style={{"display": "flex"}}>
                         {Array(5).fill(0).map((x, i) => <div
-                            className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]]) ? "upsON" : "upsOFF"}>{i}</div>)}
+                            className={(!!data?.["class"]?.[i]?.upstream?.[GS?.[state?.group]]) ? "upsON" : "upsOFF"}>{27+i}</div>)}
                     </div>
                 </div>
-            </div>
-            <div style={{"display":"flex"}}>
                 <div>
                     <h2>시뮬레이션 용</h2>
                     <Button onClick={() => {

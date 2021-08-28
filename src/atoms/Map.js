@@ -3,10 +3,12 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import './Map.scss'
 
-const Circle = ({id,xyc,dataRef,data,classID,fillbg,admin}) => {
+const Circle = ({clickable,id,xyc,dataRef,data,classID,fillbg,admin}) => {
     const onClick = () => {
-        console.log('clicked',id)
-        dataRef.child('class').child(classID).child('upstream').update({MOVEMENT:{position:id}})
+        if(clickable) {
+            console.log('clicked', id)
+            dataRef.child('class').child(classID).child('upstream').update({MOVEMENT: {position: id}})
+        }
     }
     const fill=(id==data?.["class"]?.[classID]?.map?.location?"#0a96c2":
             (id==data?.["class"]?.[classID]?.upstream?.MOVEMENT?.position?"#00ffe1":
@@ -20,7 +22,7 @@ const Circle = ({id,xyc,dataRef,data,classID,fillbg,admin}) => {
         <g className="circles" id={'map-circle-g_' + id} key={'ckmap-circle-g_' + id} onClick={data?.["class"]?.[classID]?.map?.canGo?.[id]&&admin?onClick:null}>
             <circle id={'map-circle_' + id} key={'ckmap-circle_' + id} cx={xyc[0]} cy={xyc[1]} r="26.55993"
                     fill={fill}></circle>
-            <text id={'map-circle-text_' + id} key={'ckmap-circle-text_' + id} fontSize={25} x={xyc[0]} y={xyc[1]} textAnchor={"middle"} dy={8}>{id}</text>
+            <text className="wmp" id={'map-circle-text_' + id} key={'ckmap-circle-text_' + id} fontSize={25} x={xyc[0]} y={xyc[1]} textAnchor={"middle"} dy={8}>{id}</text>
         </g>
     ];
 
@@ -73,7 +75,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
         }
         for (let i = 0; i < 40; i++)
             if (i!==20) tooltips.current[i].setContent(
-                //JSON.stringify(mapData?.[i])
+                "<div style='font-family: Wemakeprice, sans-serif'>"+
                 (mapData?.[i]?.name?"<h1 style='color: white'>"+mapData?.[i]?.name?.[t]+"</h1><br/>":"")+
                 (who[i]?who[i]+"<br/>":"")+
                 "<span style='font-size:2vh;margin-left:auto'>"+(mapData?.[i]?.cause?mapData?.[i]?.cause?.[t]+"<br/>":"")+"</span>"+
@@ -82,6 +84,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
                 (mapData?.[i]?.affection?.G?"<div style='margin:0.2vh;width:2vh;height:2vh;border-radius: 1vh;background-color: #6bca3f'></div>":"")+
                 (mapData?.[i]?.affection?.H?"<div style='margin:0.2vh;width:2vh;height:2vh;border-radius: 1vh;background-color: #32b6cc'></div>":"")+
                 (mapData?.[i]?.affection?.B?"<div style='margin:0.2vh;width:2vh;height:2vh;border-radius: 1vh;background-color: #ef7c30'></div>":"")+
+                "</div>"+
                 "</div>"
             );
             else tooltips.current[i].setContent(
@@ -120,7 +123,7 @@ const Map = ({state,mapData,dataRef,data,classID,admin,t}) => {
             {circles.map((x, i) => {
                 const y = x.split(' ');
                 return (
-                    <Circle id={`${i}`} key={`ck${i}`} data={data} admin={admin} dataRef={dataRef} xyc={y} mapData={mapData} classID={classID} fillbg={whos[i]?"#b77bfe":"#fff"}/>
+                    <Circle clickable={state?.group===1&&(state?.state===2||state?.state===3)} id={`${i}`} key={`ck${i}`} data={data} admin={admin} dataRef={dataRef} xyc={y} mapData={mapData} classID={classID} fillbg={whos[i]?"#b77bfe":"#fff"}/>
                 );
             })}
             {polygons.map((x, i) => <polygon id={`p${i}`} key={`p${i}`} points={x}/>)}

@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: Wemakeprice,'Nanum Gothic', sans-serif;
   &__title{
     width: 100%;
     padding: 2vh;
@@ -18,7 +19,14 @@
     flex: 1 0 20vh;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    &Flex{
+      margin: 1vh;
+      font-size: 3vh;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
   }
   &__card{
     width: 30%;
